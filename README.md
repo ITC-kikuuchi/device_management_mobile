@@ -1,0 +1,2 @@
+# device_management_mobile
+機器管理システム モバイル開発用リポジトリ
