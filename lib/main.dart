@@ -16,16 +16,6 @@ class MyApp extends StatelessWidget {
             '機器管理システム',
             style: TextStyle(color: Colors.white),
           ),
-          leading: IconButton(
-            //　AppBarの左側に配置する
-            icon: Icon(
-              Icons.menu,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              // Pressed Action
-            },
-          ),
           backgroundColor: Colors.blue,
         ),
       ),
