@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../login/login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,6 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      home: LoginPage(), // 最初にログイン画面を表示
     );
   }
 }
