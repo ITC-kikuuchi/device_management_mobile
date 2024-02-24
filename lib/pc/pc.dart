@@ -12,6 +12,8 @@ class _pcPage extends State<pcPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: MyAppBar(),
+      drawer: MyDrawer(),
     );
   }
 }
