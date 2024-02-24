@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../app_bar/app_bar.dart';
+import '../pc/pc.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -55,6 +56,12 @@ class _LoginPage extends State<LoginPage> {
                 // ボタンを画面中央に配置
                 child: ElevatedButton(
                   onPressed: () {
+                    // ボタンが押下されたら別のページに遷移する
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => pcPage()),
+                    );
+                  },
                   child: Text('ログイン'),
                 ),
               )
