@@ -13,7 +13,7 @@ class _LoginPage extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(),
+      appBar: LoginAppBar(),
       body: Center(
         child: Container(
           padding: const EdgeInsets.all(40.0), // ウィジェットの周囲に余白を追加
