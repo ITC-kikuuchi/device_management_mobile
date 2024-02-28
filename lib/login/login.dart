@@ -83,6 +83,23 @@ class _LoginPage extends State<LoginPage> {
                     validator: _validatePassword, // バリデーション関数を指定
                   ),
                 ),
+                Center(
+                  // ボタンを画面中央に配置
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        // ボタンが押下されたら別のページに遷移する
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => pcPage()),
+                        );
+                      }
+                    },
+                    child: Text('ログイン'),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
