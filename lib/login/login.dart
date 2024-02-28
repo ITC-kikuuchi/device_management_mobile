@@ -9,6 +9,29 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPage extends State<LoginPage> {
   bool _isObscure = true;
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
+  String? _validateEmail(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'メールアドレスを入力してください';
+    } else {
+      // メールアドレスの正規表現を使用して形式をチェック
+      final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+      if (!emailRegex.hasMatch(value)) {
+        return '正しいメールアドレスの形式で入力してください';
+      }
+    }
+    return null;
+  }
+
+  String? _validatePassword(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'パスワードを入力してください';
+    }
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
