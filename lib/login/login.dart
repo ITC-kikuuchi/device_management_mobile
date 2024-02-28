@@ -40,55 +40,49 @@ class _LoginPage extends State<LoginPage> {
       body: Center(
         child: Container(
           padding: const EdgeInsets.all(40.0), // ウィジェットの周囲に余白を追加
-          child: Column(
-            // 子要素を垂直方向に配置
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-                child: TextFormField(
-                  // テキスト入力フィールドの作成
-                  decoration: const InputDecoration(
-                    labelText: 'メールアドレスを入力してください',
+          child: Form(
+            key: _formKey, 
+            child: Column(
+              // 子要素を垂直方向に配置
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                  child: TextFormField(
+                    // テキスト入力フィールドの作成
+                    controller: _emailController,
+                    decoration: const InputDecoration(
+                      labelText: 'メールアドレス',
+                    ),
+                    validator: _validateEmail, // バリデーション関数を指定
+                    keyboardType:
+                        TextInputType.emailAddress, // キーボードタイプをメールアドレス用に指定
                   ),
                 ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-                child: TextFormField(
-                  // テキスト入力フィールドの作成
-                  obscureText: _isObscure, // テキストを非表示にするかどうかの設定
-                  decoration: InputDecoration(
-                      labelText: 'パスワード',
-                      suffixIcon: IconButton(
-                          icon: Icon(_isObscure
-                              ? Icons.visibility_off
-                              : Icons.visibility),
-                          onPressed: () {
-                            // アイコンがタップされた時の処理
-                            setState(() {
-                              // ステートを更新する
-                              _isObscure = !_isObscure;
-                            });
-                          })),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                  child: TextFormField(
+                    // テキスト入力フィールドの作成
+                    controller: _passwordController,
+                    obscureText: _isObscure, // テキストを非表示にするかどうかの設定
+                    decoration: InputDecoration(
+                        labelText: 'パスワード',
+                        suffixIcon: IconButton(
+                            icon: Icon(_isObscure
+                                ? Icons.visibility_off
+                                : Icons.visibility),
+                            onPressed: () {
+                              // アイコンがタップされた時の処理
+                              setState(() {
+                                // ステートを更新する
+                                _isObscure = !_isObscure;
+                              });
+                            })),
+                    validator: _validatePassword, // バリデーション関数を指定
+                  ),
                 ),
-              ),
-              Center(
-                // ボタンを画面中央に配置
-                child: ElevatedButton(
-                  onPressed: () {
-                    // ボタンが押下されたら別のページに遷移する
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => pcPage()),
-                    );
-                  },
-                  child: Text('ログイン'),
-                ),
-              )
-            ],
           ),
         ),
       ),
