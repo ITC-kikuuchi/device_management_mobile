@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
 import '../app_bar/app_bar.dart';
 import '../pc/pc.dart';
 
@@ -31,6 +35,46 @@ class _LoginPage extends State<LoginPage> {
       return 'パスワードを入力してください';
     }
     return null;
+  }
+
+  Future<void> _login() async {
+    final email = _emailController.text;
+    final password = _passwordController.text;
+
+    try {
+      final response = await http.post(
+        Uri.parse('http://localhost:3001/login'),
+        headers: <String, String>{
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: {
+          'username': email,
+          'password': password,
+        },
+      );
+
+      if (response.statusCode == 200) {
+        // ログイン成功時の処理
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => pcPage()),
+        );
+      } else {
+        // ログイン失敗時の処理
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('ログインに失敗しました。'),
+          ),
+        );
+      }
+    } catch (e) {
+      // エラー時の処理
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('ログイン中にエラーが発生しました。'),
+        ),
+      );
+    }
   }
 
   @override
@@ -86,15 +130,7 @@ class _LoginPage extends State<LoginPage> {
                 Center(
                   // ボタンを画面中央に配置
                   child: ElevatedButton(
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        // ボタンが押下されたら別のページに遷移する
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => pcPage()),
-                        );
-                      }
-                    },
+                    onPressed: _login, // ログイン処理を行う関数の呼び出し
                     child: Text('ログイン'),
                   ),
                 )
