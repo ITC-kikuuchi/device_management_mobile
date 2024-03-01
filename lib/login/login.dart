@@ -56,6 +56,14 @@ class _LoginPage extends State<LoginPage> {
 
       if (response.statusCode == 200) {
         // ログイン成功時の処理
+        
+        // レスポンスからアクセストークンを取得
+        final jsonData = json.decode(response.body);
+        final accessToken = jsonData['access_token'];
+        // アクセストークンをSharedPreferencesに保存
+        final prefs = await SharedPreferences.getInstance();
+        prefs.setString('access_token', accessToken);
+
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => pcPage()),
