@@ -130,15 +130,7 @@ class _LoginPage extends State<LoginPage> {
                 Center(
                   // ボタンを画面中央に配置
                   child: ElevatedButton(
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        // ボタンが押下されたら別のページに遷移する
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => pcPage()),
-                        );
-                      }
-                    },
+                    onPressed: _login, // ログイン処理を行う関数の呼び出し
                     child: Text('ログイン'),
                   ),
                 )
