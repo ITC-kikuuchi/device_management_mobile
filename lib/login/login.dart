@@ -141,7 +141,7 @@ class _LoginPage extends State<LoginPage> {
                   child: ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        // フォームのバリデーションが通過した場合、ログイン処理を行う
+                        // バリデーションチェックが問題なかった場合
                         _login();
                       }
                     },
