@@ -56,7 +56,7 @@ class _LoginPage extends State<LoginPage> {
 
       if (response.statusCode == 200) {
         // ログイン成功時の処理
-        
+
         // レスポンスからアクセストークンを取得
         final jsonData = json.decode(response.body);
         final accessToken = jsonData['access_token'];
@@ -94,7 +94,7 @@ class _LoginPage extends State<LoginPage> {
         child: Container(
           padding: const EdgeInsets.all(40.0), // ウィジェットの周囲に余白を追加
           child: Form(
-            key: _formKey, 
+            key: _formKey,
             child: Column(
               // 子要素を垂直方向に配置
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -139,7 +139,12 @@ class _LoginPage extends State<LoginPage> {
                 Center(
                   // ボタンを画面中央に配置
                   child: ElevatedButton(
-                    onPressed: _login, // ログイン処理を行う関数の呼び出し
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        // バリデーションチェックが問題なかった場合
+                        _login();
+                      }
+                    },
                     child: Text('ログイン'),
                   ),
                 )
