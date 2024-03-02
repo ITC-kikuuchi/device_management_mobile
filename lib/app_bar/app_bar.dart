@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../login/login.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -15,7 +16,11 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
             Icons.logout, // ログアウトアイコンを指定します
             color: Colors.white,
           ),
-          onPressed: () {
+          onPressed: () async {
+            // SharedPreferencesの値を初期化
+            final prefs = await SharedPreferences.getInstance();
+            await prefs.remove('access_token');
+
             Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(builder: (context) => LoginPage()),
