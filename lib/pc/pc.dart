@@ -19,6 +19,14 @@ class _pcPage extends State<pcPage> {
     return Scaffold(
       appBar: MyAppBar(),
       drawer: MyDrawer(),
+      body: ListView(
+        children: <Widget>[
+          Card(
+            child: ListTile(
+              title: Text(''),
+            ),
+          ),
+        ],
       ),
     );
   }
