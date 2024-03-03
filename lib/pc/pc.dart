@@ -19,20 +19,6 @@ class _pcPage extends State<pcPage> {
     return Scaffold(
       appBar: MyAppBar(),
       drawer: MyDrawer(),
-      body: Center(
-        child: FutureBuilder<String>(
-          future: getAccessToken(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return CircularProgressIndicator();
-            }
-            if (snapshot.hasData) {
-              // トークンを画面に表示
-              return Text('Access Token: ${snapshot.data}');
-            }
-            return Text('Access Token not found');
-          },
-        ),
       ),
     );
   }
