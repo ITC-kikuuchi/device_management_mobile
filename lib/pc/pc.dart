@@ -23,7 +23,8 @@ class _pcPage extends State<pcPage> {
         children: <Widget>[
           Card(
             child: ListTile(
-              title: Text(''),
+              title: Text('ITCPC001'),
+              subtitle: Text('使用者：'),
             ),
           ),
         ],
