@@ -72,6 +72,24 @@ class _pcPage extends State<pcPage> {
       return '';
     }
   }
+
+  /**
+   * pc一覧を表示する処理
+   */
+  Widget _buildPcCards() {
+    return ListView.builder(
+      itemCount: pcList.length,
+      itemBuilder: (context, index) {
+        return Card(
+          child: ListTile(
+            title: Text(pcList[index]['label_name'] ?? ''),
+            subtitle: Text('使用者:${pcList[index]['pc_user'] ?? ''}'),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
