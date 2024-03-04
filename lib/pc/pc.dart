@@ -9,11 +9,7 @@ class pcPage extends StatefulWidget {
 }
 
 class _pcPage extends State<pcPage> {
-  Future<String> getAccessToken() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getString('access_token') ?? "";
-  }
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
