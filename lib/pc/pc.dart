@@ -29,6 +29,13 @@ class _pcPage extends State<pcPage> {
     await _getAccessToken();
     await _getPc();
   }
+
+  /**
+   * ログインユーザのトークン取得
+   */
+  Future<void> _getAccessToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    accessToken = prefs.getString('access_token') ?? "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
