@@ -36,6 +36,42 @@ class _pcPage extends State<pcPage> {
   Future<void> _getAccessToken() async {
     final prefs = await SharedPreferences.getInstance();
     accessToken = prefs.getString('access_token') ?? "";
+  }
+
+  /**
+   * pc一覧取得
+   */
+  Future<String> _getPc() async {
+    try {
+      final response = await http.get(
+        Uri.parse('http://localhost:3001/pc'),
+        headers: <String, String>{
+          'Authorization': 'Bearer $accessToken',
+        },
+      );
+      print('Response: ${response.body}');
+      if (response.statusCode == 200) {
+        final List<dynamic> data = json.decode(response.body);
+        setState(() {
+          pcList = data
+              .map((pc) => {
+                    'label_name': pc['label_name'] != null
+                        ? pc['label_name'] as String
+                        : '',
+                    'pc_user':
+                        pc['pc_user'] != null ? pc['pc_user'] as String : '',
+                  })
+              .toList();
+        });
+      } else {
+        throw Exception('Failed to load data');
+      }
+      return '';
+    } catch (e) {
+      print('Error fetching PC data: $e');
+      return '';
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
