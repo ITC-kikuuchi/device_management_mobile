@@ -49,7 +49,6 @@ class _pcPage extends State<pcPage> {
           'Authorization': 'Bearer $accessToken',
         },
       );
-      print('Response: ${response.body}');
       if (response.statusCode == 200) {
         final List<dynamic> data = json.decode(response.body);
         setState(() {
