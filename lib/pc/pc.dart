@@ -95,16 +95,7 @@ class _pcPage extends State<pcPage> {
     return Scaffold(
       appBar: MyAppBar(),
       drawer: MyDrawer(),
-      body: ListView(
-        children: <Widget>[
-          Card(
-            child: ListTile(
-              title: Text('ITCPC001'),
-              subtitle: Text('使用者：'),
-            ),
-          ),
-        ],
-      ),
+      body: _buildPcCards(),
     );
   }
 }
