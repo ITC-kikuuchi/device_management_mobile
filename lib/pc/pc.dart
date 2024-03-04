@@ -13,7 +13,22 @@ class pcPage extends StatefulWidget {
 }
 
 class _pcPage extends State<pcPage> {
-  
+  late String accessToken;
+  List<Map<String, String>> pcList = [];
+
+  /**
+   * 画面の初期化
+   */
+  @override
+  void initState() {
+    super.initState();
+    _initializePage();
+  }
+
+  Future<void> _initializePage() async {
+    await _getAccessToken();
+    await _getPc();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
