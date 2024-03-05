@@ -89,11 +89,23 @@ class _pcPage extends State<pcPage> {
             pcList[index]['delete_flag'] == true; // delete_flagがtrueかどうかを判定
         final Color cardColor =
             isDeleted ? Color.fromARGB(255, 188, 188, 188) : Colors.white;
+
+        final bool last_updated_flag = pcList[index]['last_updated_flag'] ==
+            true; // last_updated_flagがtrueかどうかを判定
+        final Color textColor =
+            last_updated_flag ? Color.fromARGB(255, 255, 0, 0) : Colors.black;
+
         return Card(
           color: cardColor,
           child: ListTile(
-            title: Text(pcList[index]['label_name'] ?? ''),
-            subtitle: Text('使用者:${pcList[index]['pc_user'] ?? ''}'),
+            title: Text(
+              pcList[index]['label_name'] ?? '',
+              style: TextStyle(color: textColor), // テキストの色を設定
+            ),
+            subtitle: Text(
+              '使用者:${pcList[index]['pc_user'] ?? ''}',
+              style: TextStyle(color: textColor), // テキストの色を設定
+            ),
           ),
         );
       },
