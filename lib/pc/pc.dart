@@ -14,7 +14,7 @@ class pcPage extends StatefulWidget {
 
 class _pcPage extends State<pcPage> {
   late String accessToken;
-  List<Map<String, String>> pcList = [];
+  late List<Map<String, dynamic>> pcList = [];
 
   /**
    * 画面の初期化
