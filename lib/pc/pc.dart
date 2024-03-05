@@ -85,7 +85,12 @@ class _pcPage extends State<pcPage> {
     return ListView.builder(
       itemCount: pcList.length,
       itemBuilder: (context, index) {
+        final bool isDeleted =
+            pcList[index]['delete_flag'] == true; // delete_flagがtrueかどうかを判定
+        final Color cardColor =
+            isDeleted ? Color.fromARGB(255, 188, 188, 188) : Colors.white;
         return Card(
+          color: cardColor,
           child: ListTile(
             title: Text(pcList[index]['label_name'] ?? ''),
             subtitle: Text('使用者:${pcList[index]['pc_user'] ?? ''}'),
