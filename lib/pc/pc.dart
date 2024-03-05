@@ -59,6 +59,12 @@ class _pcPage extends State<pcPage> {
                         : '',
                     'pc_user':
                         pc['pc_user'] != null ? pc['pc_user'] as String : '',
+                    'delete_flag': pc['delete_flag'] != null
+                        ? pc['delete_flag'] as bool
+                        : false,
+                    'last_updated_flag': pc['last_updated_flag'] != null
+                        ? pc['last_updated_flag'] as bool
+                        : false,
                   })
               .toList();
         });
