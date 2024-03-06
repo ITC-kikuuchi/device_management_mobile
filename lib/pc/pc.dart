@@ -107,6 +107,10 @@ class _pcPage extends State<pcPage> {
               '使用者:${pcList[index]['pc_user'] ?? ''}',
               style: TextStyle(color: textColor), // テキストの色を設定
             ),
+            onTap: () {
+              // タップ時の処理
+              final pcId = pcList[index]['id']; // idを取得
+            },
           ),
         );
       },
