@@ -54,6 +54,7 @@ class _pcPage extends State<pcPage> {
         setState(() {
           pcList = data
               .map((pc) => {
+                    'id': pc['id'],
                     'label_name': pc['label_name'] != null
                         ? pc['label_name'] as String
                         : '',
