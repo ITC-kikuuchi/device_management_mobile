@@ -112,6 +112,10 @@ class _pcPage extends State<pcPage> {
             onTap: () {
               // タップ時の処理
               final pcId = pcList[index]['id']; // idを取得
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => pcDetailPage()),
+              );
             },
           ),
         );
