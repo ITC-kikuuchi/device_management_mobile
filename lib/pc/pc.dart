@@ -50,7 +50,8 @@ class _pcPage extends State<pcPage> {
         },
       );
       if (response.statusCode == 200) {
-        final List<dynamic> data = json.decode(response.body);
+        final String responseBody = utf8.decode(response.bodyBytes);
+        final List<dynamic> data = json.decode(responseBody);
         setState(() {
           pcList = data
               .map((pc) => {
