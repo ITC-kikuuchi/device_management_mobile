@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../app_bar/app_bar.dart';
 import '../drawer/drawer.dart';
+import '../pc/pc_detail.dart';
 
 class pcPage extends StatefulWidget {
   @override
@@ -111,6 +112,10 @@ class _pcPage extends State<pcPage> {
             onTap: () {
               // タップ時の処理
               final pcId = pcList[index]['id']; // idを取得
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => pcDetailPage()),
+              );
             },
           ),
         );
