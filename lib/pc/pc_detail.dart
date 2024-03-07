@@ -60,7 +60,7 @@ class _pcDetailPage extends State<pcDetailPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.fromLTRB(25, 0, 25, 8), // 左側に16の余白を追加
+                padding: const EdgeInsets.fromLTRB(25, 0, 25, 8),
                 child: Text(
                   'ITCPC001',
                   style: TextStyle(
