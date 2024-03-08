@@ -65,6 +65,14 @@ class _pcDetailPage extends State<pcDetailPage> {
     super.initState();
     _initializePage();
   }
+
+  /**
+   * 初期化される際に実行する関数の呼び出し
+   */
+  Future<void> _initializePage() async {
+    await _getAccessToken();
+    await _getPcDetail();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
