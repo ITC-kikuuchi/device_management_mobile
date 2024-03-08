@@ -121,7 +121,7 @@ class _pcDetailPage extends State<pcDetailPage> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(25, 0, 25, 8),
                 child: Text(
-                  'ITCPC001',
+                  pcData['label_name'] ?? '-',
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
