@@ -56,6 +56,15 @@ class PCInfoItem extends StatelessWidget {
 class _pcDetailPage extends State<pcDetailPage> {
   late String accessToken;
   Map<String, dynamic> pcData = {};
+
+  /**
+   * 画面の初期化
+   */
+  @override
+  void initState() {
+    super.initState();
+    _initializePage();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
