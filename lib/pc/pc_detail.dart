@@ -81,6 +81,33 @@ class _pcDetailPage extends State<pcDetailPage> {
     final prefs = await SharedPreferences.getInstance();
     accessToken = prefs.getString('access_token') ?? "";
   }
+
+  /**
+   * pc詳細取得
+   */
+  Future<String> _getPcDetail() async {
+    try {
+      final response = await http.get(
+        Uri.parse('http://localhost:3001/pc/${widget.pcId}'),
+        headers: <String, String>{
+          'Authorization': 'Bearer $accessToken',
+        },
+      );
+      if (response.statusCode == 200) {
+        final String responseBody = utf8.decode(response.bodyBytes);
+        setState(() {
+          pcData = json.decode(responseBody);
+        });
+      } else {
+        throw Exception('Failed to load data');
+      }
+      return '';
+    } catch (e) {
+      print('Error fetching PC data: $e');
+      return '';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
