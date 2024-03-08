@@ -54,6 +54,8 @@ class PCInfoItem extends StatelessWidget {
 
 
 class _pcDetailPage extends State<pcDetailPage> {
+  late String accessToken;
+  Map<String, dynamic> pcData = {};
   @override
   Widget build(BuildContext context) {
     return Scaffold(
