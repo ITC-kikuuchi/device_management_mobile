@@ -151,9 +151,3 @@ class _pcDetailPage extends State<pcDetailPage> {
     );
   }
 }
-
-void main() {
-  runApp(MaterialApp(
-    home: pcDetailPage(),
-  ));
-}
