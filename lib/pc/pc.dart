@@ -114,7 +114,7 @@ class _pcPage extends State<pcPage> {
               final pcId = pcList[index]['id']; // idを取得
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => pcDetailPage()),
+                MaterialPageRoute(builder: (context) => pcDetailPage(pcId: pcId)),
               );
             },
           ),
