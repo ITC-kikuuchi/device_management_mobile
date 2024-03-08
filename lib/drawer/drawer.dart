@@ -21,6 +21,12 @@ class MyDrawer extends StatelessWidget {
           ListTile(
             title: Text("PC一覧"),
             leading: Icon(Icons.computer),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => pcPage()), // 遷移先の画面を指定
+              );
+            },
           ),
           ListTile(
             title: Text("iOS一覧"),
