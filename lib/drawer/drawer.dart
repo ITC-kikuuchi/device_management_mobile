@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../pc/pc.dart';
+import '../ios/ios.dart';
 
 class MyDrawer extends StatelessWidget {
   @override
@@ -31,6 +32,12 @@ class MyDrawer extends StatelessWidget {
           ListTile(
             title: Text("iOS一覧"),
             leading: Icon(Icons.apple),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => iosPage()), // 遷移先の画面を指定
+              );
+            },
           ),
           ListTile(
             title: Text("Android一覧"),
