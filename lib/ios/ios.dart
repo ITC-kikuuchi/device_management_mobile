@@ -24,6 +24,11 @@ class _iosPage extends State<iosPage> {
     super.initState();
     _initializePage();
   }
+
+  Future<void> _initializePage() async {
+    await _getAccessToken();
+    await _getIos();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
