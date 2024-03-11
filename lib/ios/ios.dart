@@ -29,6 +29,14 @@ class _iosPage extends State<iosPage> {
     await _getAccessToken();
     await _getIos();
   }
+
+  /**
+   * ログインユーザのトークン取得
+   */
+  Future<void> _getAccessToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    accessToken = prefs.getString('access_token') ?? "";
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
