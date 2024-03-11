@@ -16,6 +16,14 @@ class _iosPage extends State<iosPage> {
   late String accessToken;
   late List<Map<String, dynamic>> iosList = [];
 
+  /**
+   * 画面の初期化
+   */
+  @override
+  void initState() {
+    super.initState();
+    _initializePage();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
