@@ -13,6 +13,8 @@ class iosPage extends StatefulWidget {
 }
 
 class _iosPage extends State<iosPage> {
+  late String accessToken;
+  late List<Map<String, dynamic>> iosList = [];
 
   @override
   Widget build(BuildContext context) {
