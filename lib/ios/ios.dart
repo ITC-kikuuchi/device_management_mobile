@@ -60,8 +60,7 @@ class _iosPage extends State<iosPage> {
                     'label_name': ios['label_name'] != null
                         ? ios['label_name'] as String
                         : '',
-                    'os':
-                        ios['os'] != null ? ios['os'] as String : '',
+                    'os': ios['os'] != null ? ios['os'] as String : '',
                     'delete_flag': ios['delete_flag'] != null
                         ? ios['delete_flag'] as bool
                         : false,
