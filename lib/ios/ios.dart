@@ -108,7 +108,15 @@ class _iosPage extends State<iosPage> {
               'OS:${iosList[index]['os'] ?? ''}',
               style: TextStyle(color: textColor), // テキストの色を設定
             ),
-            onTap: () {},
+            onTap: () {
+              // タップ時の処理
+              final iosId = iosList[index]['id']; // idを取得
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => iosDetailPage(iosId: iosId)),
+              );
+            },
           ),
         );
       },
