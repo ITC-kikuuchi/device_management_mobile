@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../app_bar/app_bar.dart';
 import '../drawer/drawer.dart';
+import '../ios/ios_detail.dart';
 
 class iosPage extends StatefulWidget {
   @override
@@ -59,8 +60,7 @@ class _iosPage extends State<iosPage> {
                     'label_name': ios['label_name'] != null
                         ? ios['label_name'] as String
                         : '',
-                    'os':
-                        ios['os'] != null ? ios['os'] as String : '',
+                    'os': ios['os'] != null ? ios['os'] as String : '',
                     'delete_flag': ios['delete_flag'] != null
                         ? ios['delete_flag'] as bool
                         : false,
@@ -108,7 +108,15 @@ class _iosPage extends State<iosPage> {
               'OS:${iosList[index]['os'] ?? ''}',
               style: TextStyle(color: textColor), // テキストの色を設定
             ),
-            onTap: () {},
+            onTap: () {
+              // タップ時の処理
+              final iosId = iosList[index]['id']; // idを取得
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => iosDetailPage(iosId: iosId)),
+              );
+            },
           ),
         );
       },
