@@ -80,4 +80,30 @@ class _iosDetailPage extends State<iosDetailPage> {
     final prefs = await SharedPreferences.getInstance();
     accessToken = prefs.getString('access_token') ?? "";
   }
+
+  /**
+   * iOS詳細取得
+   */
+  Future<String> _getIosDetail() async {
+    try {
+      final response = await http.get(
+        Uri.parse('http://localhost:3001/ios/${widget.iosId}'),
+        headers: <String, String>{
+          'Authorization': 'Bearer $accessToken',
+        },
+      );
+      if (response.statusCode == 200) {
+        final String responseBody = utf8.decode(response.bodyBytes);
+        setState(() {
+          iosData = json.decode(responseBody);
+        });
+      } else {
+        throw Exception('Failed to load data');
+      }
+      return '';
+    } catch (e) {
+      print('Error fetching IOS data: $e');
+      return '';
+    }
+  }
 }
