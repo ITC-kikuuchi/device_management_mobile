@@ -106,4 +106,42 @@ class _iosDetailPage extends State<iosDetailPage> {
       return '';
     }
   }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: MyAppBar(),
+      body: SingleChildScrollView(
+        // SingleChildScrollViewでラップ
+        child: Container(
+          padding: EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(25, 0, 25, 8),
+                child: Text(
+                  iosData['label_name'] ?? '-',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              // iOS情報を表示するウィジェット
+              IosInfoItem(label: 'ios名', value: iosData['ios_name'] ?? '-'),
+              IosInfoItem(label: 'メーカー', value: iosData['manufacturer'] ?? '-'),
+              IosInfoItem(label: '型', value: iosData['type'] ?? '-'),
+              IosInfoItem(label: 'OS', value: iosData['os'] ?? '-'),
+              IosInfoItem(label: 'キャリア', value: iosData['carrier'] ?? '-'),
+              IosInfoItem(label: '状態', value: iosData['condition'] ?? '-'),
+              IosInfoItem(label: '納品日', value: iosData['delivery_date'] ?? '-'),
+              IosInfoItem(label: '廃棄日', value: iosData['disposal_date'] ?? '-'),
+              IosInfoItem(label: '備考', value: iosData['remarks'] ?? '-'),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }
