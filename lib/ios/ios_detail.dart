@@ -51,3 +51,8 @@ class IosInfoItem extends StatelessWidget {
     );
   }
 }
+
+class _iosDetailPage extends State<iosDetailPage> {
+  late String accessToken;
+  Map<String, dynamic> iosData = {};
+}
