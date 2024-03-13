@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../pc/pc.dart';
 import '../ios/ios.dart';
+import '../android/android.dart';
 
 class MyDrawer extends StatelessWidget {
   @override
@@ -42,6 +43,12 @@ class MyDrawer extends StatelessWidget {
           ListTile(
             title: Text("Android一覧"),
             leading: Icon(Icons.android),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => androidPage()), // 遷移先の画面を指定
+              );
+            },
           ),
           ListTile(
             title: Text("Windows一覧"),
