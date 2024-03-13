@@ -55,4 +55,13 @@ class IosInfoItem extends StatelessWidget {
 class _iosDetailPage extends State<iosDetailPage> {
   late String accessToken;
   Map<String, dynamic> iosData = {};
+
+  /**
+   * 画面の初期化
+   */
+  @override
+  void initState() {
+    super.initState();
+    _initializePage();
+  }
 }
