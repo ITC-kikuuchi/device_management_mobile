@@ -78,6 +78,45 @@ class _androidPage extends State<androidPage> {
       return '';
     }
   }
+
+  /**
+   * Android一覧を表示する処理
+   */
+  Widget _buildAndroidCards() {
+    return ListView.builder(
+      itemCount: androidList.length,
+      itemBuilder: (context, index) {
+        final bool isDeleted = androidList[index]['delete_flag'] ==
+            true; // delete_flagがtrueかどうかを判定
+        final Color cardColor =
+            isDeleted ? Color.fromARGB(255, 188, 188, 188) : Colors.white;
+
+        final bool last_updated_flag = androidList[index]
+                ['last_updated_flag'] ==
+            true; // last_updated_flagがtrueかどうかを判定
+        final Color textColor =
+            last_updated_flag ? Color.fromARGB(255, 255, 0, 0) : Colors.black;
+
+        return Card(
+          color: cardColor,
+          child: ListTile(
+            title: Text(
+              androidList[index]['label_name'] ?? '',
+              style: TextStyle(color: textColor), // テキストの色を設定
+            ),
+            subtitle: Text(
+              'OS:${androidList[index]['os'] ?? ''}',
+              style: TextStyle(color: textColor), // テキストの色を設定
+            ),
+            onTap: () {
+              // タップ時の処理
+            },
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
