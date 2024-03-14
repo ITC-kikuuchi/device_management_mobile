@@ -24,6 +24,11 @@ class _androidPage extends State<androidPage> {
     super.initState();
     _initializePage();
   }
+
+  Future<void> _initializePage() async {
+    await _getAccessToken();
+    await _getAndroid();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
