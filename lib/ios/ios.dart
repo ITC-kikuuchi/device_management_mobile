@@ -75,7 +75,7 @@ class _iosPage extends State<iosPage> {
       }
       return '';
     } catch (e) {
-      print('Error fetching PC data: $e');
+      print('Error fetching iOS data: $e');
       return '';
     }
   }
