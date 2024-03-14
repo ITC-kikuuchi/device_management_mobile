@@ -18,14 +18,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           onPressed: () async {
             // SharedPreferencesの値を初期化
-            final prefs = await SharedPreferences.getInstance();
-            await prefs.remove('access_token');
-
-            Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => LoginPage()),
-              (route) => false,
-            );
+            _showDialog(context);
           },
         ),
       ],
@@ -56,4 +49,56 @@ class LoginAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Size get preferredSize => Size.fromHeight(kToolbarHeight);
+}
+
+void _showDialog(BuildContext context) {
+  showDialog<void>(
+    context: context,
+    barrierDismissible: false, // (追加)ユーザーがモーダルを閉じないようにする
+    builder: (BuildContext context) {
+      return GestureDetector(
+        onTap: () => Navigator.pop(context),
+        child: Dialog(
+          child: Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  '本当にログアウトしますか？',
+                  style: TextStyle(
+                    fontSize: 16.0, // 文字サイズを変更
+                    fontWeight: FontWeight.bold, // 太さを変更
+                  ),
+                ),
+                SizedBox(height: 40),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: Text('いいえ'),
+                    ),
+                    ElevatedButton(
+                      onPressed: () async {
+                        final prefs = await SharedPreferences.getInstance();
+                        await prefs.remove('access_token');
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) => LoginPage()),
+                          (route) => false,
+                        );
+                      },
+                      child: Text('はい'),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    },
+  );
 }
