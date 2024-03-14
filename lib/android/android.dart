@@ -13,6 +13,8 @@ class androidPage extends StatefulWidget {
 }
 
 class _androidPage extends State<androidPage> {
+  late String accessToken;
+  late List<Map<String, dynamic>> androidList = [];
 
   @override
   Widget build(BuildContext context) {
