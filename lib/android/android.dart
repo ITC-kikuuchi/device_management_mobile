@@ -16,6 +16,14 @@ class _androidPage extends State<androidPage> {
   late String accessToken;
   late List<Map<String, dynamic>> androidList = [];
 
+  /**
+   * 画面の初期化
+   */
+  @override
+  void initState() {
+    super.initState();
+    _initializePage();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
