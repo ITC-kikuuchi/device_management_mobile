@@ -30,6 +30,7 @@ class _pcPage extends State<pcPage> {
   Future<void> _initializePage() async {
     await _getAccessToken();
     await _getPc();
+    await _getLastUpdatedUser();
   }
 
   /**
