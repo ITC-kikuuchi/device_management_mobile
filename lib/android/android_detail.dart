@@ -64,3 +64,11 @@ class _androidDetailPage extends State<androidDetailPage> {
     super.initState();
     _initializePage();
   }
+
+  /**
+   * 初期化される際に実行する関数の呼び出し
+   */
+  Future<void> _initializePage() async {
+    await _getAccessToken();
+    await _getAndroidDetail();
+  }
