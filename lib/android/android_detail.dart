@@ -106,3 +106,42 @@ class _androidDetailPage extends State<androidDetailPage> {
       return '';
     }
   }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: MyAppBar(),
+      body: SingleChildScrollView(
+        // SingleChildScrollViewでラップ
+        child: Container(
+          padding: EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(25, 0, 25, 8),
+                child: Text(
+                  androidData['label_name'] ?? '-',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              // Android情報を表示するウィジェット
+              AndroidInfoItem(label: 'Android名', value: androidData['android_name'] ?? '-'),
+              AndroidInfoItem(label: 'メーカー', value: androidData['manufacturer'] ?? '-'),
+              AndroidInfoItem(label: '型', value: androidData['type'] ?? '-'),
+              AndroidInfoItem(label: 'OS', value: androidData['os'] ?? '-'),
+              AndroidInfoItem(label: 'キャリア', value: androidData['carrier'] ?? '-'),
+              AndroidInfoItem(label: '状態', value: androidData['condition'] ?? '-'),
+              AndroidInfoItem(label: '納品日', value: androidData['delivery_date'] ?? '-'),
+              AndroidInfoItem(label: '廃棄日', value: androidData['disposal_date'] ?? '-'),
+              AndroidInfoItem(label: '備考', value: androidData['remarks'] ?? '-'),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
