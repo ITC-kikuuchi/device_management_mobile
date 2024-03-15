@@ -5,3 +5,10 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../app_bar/app_bar.dart';
+
+class androidDetailPage extends StatefulWidget {
+  final int androidId;
+  androidDetailPage({required this.androidId});
+  @override
+  _androidDetailPage createState() => _androidDetailPage();
+}
