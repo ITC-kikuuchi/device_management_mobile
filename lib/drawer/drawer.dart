@@ -54,6 +54,12 @@ class MyDrawer extends StatelessWidget {
           ListTile(
             title: Text("Windows一覧"),
             leading: Icon(Icons.tablet_android),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => windowsPage()), // 遷移先の画面を指定
+              );
+            },
           ),
         ],
       ),
