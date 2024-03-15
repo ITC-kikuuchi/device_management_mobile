@@ -111,6 +111,12 @@ class _androidPage extends State<androidPage> {
             ),
             onTap: () {
               // タップ時の処理
+              final androidId = androidList[index]['id']; // idを取得
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => androidDetailPage(androidId: androidId)),
+              );
             },
           ),
         );
