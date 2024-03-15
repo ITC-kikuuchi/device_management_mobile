@@ -16,6 +16,7 @@ class pcPage extends StatefulWidget {
 class _pcPage extends State<pcPage> {
   late String accessToken;
   late List<Map<String, dynamic>> pcList = [];
+  Map<String, dynamic> userData = {};
 
   /**
    * 画面の初期化
@@ -29,6 +30,7 @@ class _pcPage extends State<pcPage> {
   Future<void> _initializePage() async {
     await _getAccessToken();
     await _getPc();
+    await _getLastUpdatedUser();
   }
 
   /**
@@ -82,44 +84,91 @@ class _pcPage extends State<pcPage> {
   }
 
   /**
+   * pc最終更新者取得
+   */
+  Future<String> _getLastUpdatedUser() async {
+    try {
+      final response = await http.get(
+        Uri.parse('http://localhost:3001/pc_update_user'),
+        headers: <String, String>{
+          'Authorization': 'Bearer $accessToken',
+        },
+      );
+      if (response.statusCode == 200) {
+        final String responseBody = utf8.decode(response.bodyBytes);
+        setState(() {
+          userData = json.decode(responseBody);
+        });
+      } else {
+        throw Exception('Failed to load data');
+      }
+      return '';
+    } catch (e) {
+      print('Error fetching user data: $e');
+      return '';
+    }
+  }
+
+  /**
    * pc一覧を表示する処理
    */
   Widget _buildPcCards() {
-    return ListView.builder(
-      itemCount: pcList.length,
-      itemBuilder: (context, index) {
-        final bool isDeleted =
-            pcList[index]['delete_flag'] == true; // delete_flagがtrueかどうかを判定
-        final Color cardColor =
-            isDeleted ? Color.fromARGB(255, 188, 188, 188) : Colors.white;
+    return Expanded(
+      child: ListView.builder(
+        shrinkWrap: true,
+        itemCount: pcList.length,
+        itemBuilder: (context, index) {
+          final bool isDeleted =
+              pcList[index]['delete_flag'] == true; // delete_flagがtrueかどうかを判定
+          final Color cardColor =
+              isDeleted ? Color.fromARGB(255, 188, 188, 188) : Colors.white;
 
-        final bool last_updated_flag = pcList[index]['last_updated_flag'] ==
-            true; // last_updated_flagがtrueかどうかを判定
-        final Color textColor =
-            last_updated_flag ? Color.fromARGB(255, 255, 0, 0) : Colors.black;
+          final bool last_updated_flag = pcList[index]['last_updated_flag'] ==
+              true; // last_updated_flagがtrueかどうかを判定
+          final Color textColor =
+              last_updated_flag ? Color.fromARGB(255, 255, 0, 0) : Colors.black;
 
-        return Card(
-          color: cardColor,
-          child: ListTile(
-            title: Text(
-              pcList[index]['label_name'] ?? '',
-              style: TextStyle(color: textColor), // テキストの色を設定
+          return Card(
+            color: cardColor,
+            child: ListTile(
+              title: Text(
+                pcList[index]['label_name'] ?? '',
+                style: TextStyle(color: textColor), // テキストの色を設定
+              ),
+              subtitle: Text(
+                '使用者:${pcList[index]['pc_user'] ?? ''}',
+                style: TextStyle(color: textColor), // テキストの色を設定
+              ),
+              onTap: () {
+                // タップ時の処理
+                final pcId = pcList[index]['id']; // idを取得
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => pcDetailPage(pcId: pcId)),
+                );
+              },
             ),
-            subtitle: Text(
-              '使用者:${pcList[index]['pc_user'] ?? ''}',
-              style: TextStyle(color: textColor), // テキストの色を設定
-            ),
-            onTap: () {
-              // タップ時の処理
-              final pcId = pcList[index]['id']; // idを取得
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => pcDetailPage(pcId: pcId)),
-              );
-            },
-          ),
-        );
-      },
+          );
+        },
+      ),
+    );
+  }
+
+  /**
+   * pc最終更新者を表示する処理
+   */
+  Widget _buildLastUpdatedUser() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(25, 8, 25, 8),
+      child: Text(
+        '最終更新者:${userData['user_name'] ?? ''}',
+        style: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+          color: Colors.red,
+        ),
+      ),
     );
   }
 
@@ -128,7 +177,12 @@ class _pcPage extends State<pcPage> {
     return Scaffold(
       appBar: MyAppBar(),
       drawer: MyDrawer(),
-      body: _buildPcCards(),
+      body: Column(
+        children: [
+          _buildLastUpdatedUser(),
+          _buildPcCards(),
+        ],
+      ),
     );
   }
 }
