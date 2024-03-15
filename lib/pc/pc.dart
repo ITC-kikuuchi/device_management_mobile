@@ -177,7 +177,12 @@ class _pcPage extends State<pcPage> {
     return Scaffold(
       appBar: MyAppBar(),
       drawer: MyDrawer(),
-      body: _buildPcCards(),
+      body: Column(
+        children: [
+          _buildLastUpdatedUser(),
+          _buildPcCards(),
+        ],
+      ),
     );
   }
 }
