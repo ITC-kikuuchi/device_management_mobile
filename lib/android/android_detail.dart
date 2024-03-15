@@ -72,3 +72,11 @@ class _androidDetailPage extends State<androidDetailPage> {
     await _getAccessToken();
     await _getAndroidDetail();
   }
+
+  /**
+   * ログインユーザのトークン取得
+   */
+  Future<void> _getAccessToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    accessToken = prefs.getString('access_token') ?? "";
+  }
