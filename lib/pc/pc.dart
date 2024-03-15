@@ -113,41 +113,47 @@ class _pcPage extends State<pcPage> {
    * pc一覧を表示する処理
    */
   Widget _buildPcCards() {
-    return ListView.builder(
-      itemCount: pcList.length,
-      itemBuilder: (context, index) {
-        final bool isDeleted =
-            pcList[index]['delete_flag'] == true; // delete_flagがtrueかどうかを判定
-        final Color cardColor =
-            isDeleted ? Color.fromARGB(255, 188, 188, 188) : Colors.white;
+    return Expanded(
+      child: ListView.builder(
+        shrinkWrap: true,
+        itemCount: pcList.length,
+        itemBuilder: (context, index) {
+          final bool isDeleted =
+              pcList[index]['delete_flag'] == true; // delete_flagがtrueかどうかを判定
+          final Color cardColor =
+              isDeleted ? Color.fromARGB(255, 188, 188, 188) : Colors.white;
 
-        final bool last_updated_flag = pcList[index]['last_updated_flag'] ==
-            true; // last_updated_flagがtrueかどうかを判定
-        final Color textColor =
-            last_updated_flag ? Color.fromARGB(255, 255, 0, 0) : Colors.black;
+          final bool last_updated_flag = pcList[index]['last_updated_flag'] ==
+              true; // last_updated_flagがtrueかどうかを判定
+          final Color textColor =
+              last_updated_flag ? Color.fromARGB(255, 255, 0, 0) : Colors.black;
 
-        return Card(
-          color: cardColor,
-          child: ListTile(
-            title: Text(
-              pcList[index]['label_name'] ?? '',
-              style: TextStyle(color: textColor), // テキストの色を設定
+          return Card(
+            color: cardColor,
+            child: ListTile(
+              title: Text(
+                pcList[index]['label_name'] ?? '',
+                style: TextStyle(color: textColor), // テキストの色を設定
+              ),
+              subtitle: Text(
+                '使用者:${pcList[index]['pc_user'] ?? ''}',
+                style: TextStyle(color: textColor), // テキストの色を設定
+              ),
+              onTap: () {
+                // タップ時の処理
+                final pcId = pcList[index]['id']; // idを取得
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => pcDetailPage(pcId: pcId)),
+                );
+              },
             ),
-            subtitle: Text(
-              '使用者:${pcList[index]['pc_user'] ?? ''}',
-              style: TextStyle(color: textColor), // テキストの色を設定
-            ),
-            onTap: () {
-              // タップ時の処理
-              final pcId = pcList[index]['id']; // idを取得
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => pcDetailPage(pcId: pcId)),
-              );
-            },
-          ),
-        );
-      },
+          );
+        },
+      ),
+    );
+  }
     );
   }
 
