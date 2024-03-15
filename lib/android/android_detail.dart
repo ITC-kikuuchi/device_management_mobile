@@ -51,3 +51,16 @@ class AndroidInfoItem extends StatelessWidget {
     );
   }
 }
+
+class _androidDetailPage extends State<androidDetailPage> {
+  late String accessToken;
+  Map<String, dynamic> androidData = {};
+
+  /**
+   * 画面の初期化
+   */
+  @override
+  void initState() {
+    super.initState();
+    _initializePage();
+  }
