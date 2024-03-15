@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../app_bar/app_bar.dart';
 import '../drawer/drawer.dart';
+import '../android/android_detail.dart';
 
 class androidPage extends StatefulWidget {
   @override
