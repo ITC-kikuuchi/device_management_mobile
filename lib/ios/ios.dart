@@ -176,7 +176,12 @@ class _iosPage extends State<iosPage> {
     return Scaffold(
       appBar: MyAppBar(),
       drawer: MyDrawer(),
-      body: _buildIosCards(),
+      body: Column(
+        children: [
+          _buildLastUpdatedUser(),
+          _buildIosCards(),
+        ],
+      ),
     );
   }
 }
