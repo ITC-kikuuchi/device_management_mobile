@@ -112,42 +112,47 @@ class _iosPage extends State<iosPage> {
    * ios一覧を表示する処理
    */
   Widget _buildIosCards() {
-    return ListView.builder(
-      itemCount: iosList.length,
-      itemBuilder: (context, index) {
-        final bool isDeleted =
-            iosList[index]['delete_flag'] == true; // delete_flagがtrueかどうかを判定
-        final Color cardColor =
-            isDeleted ? Color.fromARGB(255, 188, 188, 188) : Colors.white;
+    return Expanded(
+      child: ListView.builder(
+        shrinkWrap: true,
+        itemCount: iosList.length,
+        itemBuilder: (context, index) {
+          final bool isDeleted =
+              iosList[index]['delete_flag'] == true; // delete_flagがtrueかどうかを判定
+          final Color cardColor =
+              isDeleted ? Color.fromARGB(255, 188, 188, 188) : Colors.white;
 
-        final bool last_updated_flag = iosList[index]['last_updated_flag'] ==
-            true; // last_updated_flagがtrueかどうかを判定
-        final Color textColor =
-            last_updated_flag ? Color.fromARGB(255, 255, 0, 0) : Colors.black;
+          final bool last_updated_flag = iosList[index]['last_updated_flag'] ==
+              true; // last_updated_flagがtrueかどうかを判定
+          final Color textColor =
+              last_updated_flag ? Color.fromARGB(255, 255, 0, 0) : Colors.black;
 
-        return Card(
-          color: cardColor,
-          child: ListTile(
-            title: Text(
-              iosList[index]['label_name'] ?? '',
-              style: TextStyle(color: textColor), // テキストの色を設定
+          return Card(
+            color: cardColor,
+            child: ListTile(
+              title: Text(
+                iosList[index]['label_name'] ?? '',
+                style: TextStyle(color: textColor), // テキストの色を設定
+              ),
+              subtitle: Text(
+                'OS:${iosList[index]['os'] ?? ''}',
+                style: TextStyle(color: textColor), // テキストの色を設定
+              ),
+              onTap: () {
+                // タップ時の処理
+                final iosId = iosList[index]['id']; // idを取得
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => iosDetailPage(iosId: iosId)),
+                );
+              },
             ),
-            subtitle: Text(
-              'OS:${iosList[index]['os'] ?? ''}',
-              style: TextStyle(color: textColor), // テキストの色を設定
-            ),
-            onTap: () {
-              // タップ時の処理
-              final iosId = iosList[index]['id']; // idを取得
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => iosDetailPage(iosId: iosId)),
-              );
-            },
-          ),
-        );
-      },
+          );
+        },
+      ),
+    );
+  }
     );
   }
 
