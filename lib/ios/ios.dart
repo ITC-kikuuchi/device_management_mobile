@@ -30,6 +30,7 @@ class _iosPage extends State<iosPage> {
   Future<void> _initializePage() async {
     await _getAccessToken();
     await _getIos();
+    await _getLastUpdatedUser();
   }
 
   /**
