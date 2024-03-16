@@ -16,6 +16,7 @@ class iosPage extends StatefulWidget {
 class _iosPage extends State<iosPage> {
   late String accessToken;
   late List<Map<String, dynamic>> iosList = [];
+  Map<String, dynamic> userData = {};
 
   /**
    * 画面の初期化
