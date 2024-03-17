@@ -30,6 +30,7 @@ class _androidPage extends State<androidPage> {
   Future<void> _initializePage() async {
     await _getAccessToken();
     await _getAndroid();
+    await _getLastUpdatedUser();
   }
 
   /**
