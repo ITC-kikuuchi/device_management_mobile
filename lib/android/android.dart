@@ -16,6 +16,7 @@ class androidPage extends StatefulWidget {
 class _androidPage extends State<androidPage> {
   late String accessToken;
   late List<Map<String, dynamic>> androidList = [];
+  Map<String, dynamic> userData = {};
 
   /**
    * 画面の初期化
