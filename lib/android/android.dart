@@ -155,6 +155,21 @@ class _androidPage extends State<androidPage> {
       ),
     );
   }
+
+  /**
+   * android最終更新者を表示する処理
+   */
+  Widget _buildLastUpdatedUser() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(25, 8, 25, 8),
+      child: Text(
+        '最終更新者:${userData['user_name'] ?? ''}',
+        style: TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+          color: Colors.red,
+        ),
+      ),
     );
   }
 
