@@ -178,7 +178,12 @@ class _androidPage extends State<androidPage> {
     return Scaffold(
       appBar: MyAppBar(),
       drawer: MyDrawer(),
-      body: _buildAndroidCards(),
+      body: Column(
+        children: [
+          _buildLastUpdatedUser(),
+          _buildAndroidCards(),
+        ],
+      ),
     );
   }
 }
