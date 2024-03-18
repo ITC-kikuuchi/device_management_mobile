@@ -160,13 +160,25 @@ class _pcPage extends State<pcPage> {
    */
   Widget _buildLastUpdatedUser() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(25, 8, 25, 8),
-      child: Text(
-        '最終更新者:${userData['user_name'] ?? ''}',
-        style: TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-          color: Colors.red,
+      padding: const EdgeInsets.fromLTRB(15, 8, 0, 8),
+      child: RichText(
+        text: TextSpan(
+          children: [
+            TextSpan(
+              text: '最終更新者:',
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.black,
+              ),
+            ),
+            TextSpan(
+              text: '${userData['user_name'] ?? ''}',
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.red,
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -178,6 +190,7 @@ class _pcPage extends State<pcPage> {
       appBar: MyAppBar(),
       drawer: MyDrawer(),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildLastUpdatedUser(),
           _buildPcCards(),
