@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../app_bar/app_bar.dart';
+import '../widgets/detail_item.dart';
 
 class iosDetailPage extends StatefulWidget {
   final int iosId;
