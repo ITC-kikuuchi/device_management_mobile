@@ -190,6 +190,7 @@ class _pcPage extends State<pcPage> {
       appBar: MyAppBar(),
       drawer: MyDrawer(),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildLastUpdatedUser(),
           _buildPcCards(),
