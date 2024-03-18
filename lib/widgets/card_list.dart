@@ -6,7 +6,7 @@ import '../android/android_detail.dart';
 import '../constants.dart';
 
 class CardList extends StatefulWidget {
-  late List<Map<String, dynamic>> deviceList;
+  final List<Map<String, dynamic>> deviceList;
   final int deviceId;
   CardList({required this.deviceList, required this.deviceId});
   @override
