@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../app_bar/app_bar.dart';
 import '../drawer/drawer.dart';
+import '../widgets/last_updated_user.dart';
 import '../ios/ios_detail.dart';
 
 class iosPage extends StatefulWidget {
