@@ -163,7 +163,7 @@ class _iosPage extends State<iosPage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildLastUpdatedUser(),
+          LastUpdatedUser(userData: userData),
           _buildIosCards(),
         ],
       ),

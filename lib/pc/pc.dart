@@ -164,7 +164,7 @@ class _pcPage extends State<pcPage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildLastUpdatedUser(),
+          LastUpdatedUser(userData: userData),
           _buildPcCards(),
         ],
       ),
