@@ -191,6 +191,7 @@ class _androidPage extends State<androidPage> {
       appBar: MyAppBar(),
       drawer: MyDrawer(),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildLastUpdatedUser(),
           _buildAndroidCards(),
