@@ -59,11 +59,11 @@ class _CardList extends State<CardList> {
                   MaterialPageRoute(
                     builder: (context) {
                       switch (widget.deviceId) {
-                        case 1:
+                        case DeviceId.pc:
                           return pcDetailPage(pcId: id);
-                        case 2:
+                        case DeviceId.ios:
                           return iosDetailPage(iosId: id);
-                        case 3:
+                        case DeviceId.android:
                           return androidDetailPage(androidId: id);
                         default:
                           throw Exception(
