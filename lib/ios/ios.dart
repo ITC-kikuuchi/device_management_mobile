@@ -189,6 +189,7 @@ class _iosPage extends State<iosPage> {
       appBar: MyAppBar(),
       drawer: MyDrawer(),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildLastUpdatedUser(),
           _buildIosCards(),
