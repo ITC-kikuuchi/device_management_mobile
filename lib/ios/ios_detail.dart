@@ -5,51 +5,13 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../app_bar/app_bar.dart';
+import '../widgets/detail_item.dart';
 
 class iosDetailPage extends StatefulWidget {
   final int iosId;
   iosDetailPage({required this.iosId});
   @override
   _iosDetailPage createState() => _iosDetailPage();
-}
-
-// ios情報を表示するウィジェット
-class IosInfoItem extends StatelessWidget {
-  final String label;
-  final String value;
-
-  const IosInfoItem({
-    required this.label,
-    required this.value,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(25, 8, 25, 5), // 左側に16の余白を追加
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // ラベルを左寄せに配置
-          Text(
-            label,
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          SizedBox(height: 4), // ラベルと値の間隔を設定
-          // 値を左寄せに配置
-          Text(
-            value,
-            style: TextStyle(
-              fontSize: 18,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 }
 
 class _iosDetailPage extends State<iosDetailPage> {
@@ -129,15 +91,15 @@ class _iosDetailPage extends State<iosDetailPage> {
                 ),
               ),
               // iOS情報を表示するウィジェット
-              IosInfoItem(label: 'ios名', value: iosData['ios_name'] ?? '-'),
-              IosInfoItem(label: 'メーカー', value: iosData['manufacturer'] ?? '-'),
-              IosInfoItem(label: '型', value: iosData['type'] ?? '-'),
-              IosInfoItem(label: 'OS', value: iosData['os'] ?? '-'),
-              IosInfoItem(label: 'キャリア', value: iosData['carrier'] ?? '-'),
-              IosInfoItem(label: '状態', value: iosData['condition'] ?? '-'),
-              IosInfoItem(label: '納品日', value: iosData['delivery_date'] ?? '-'),
-              IosInfoItem(label: '廃棄日', value: iosData['disposal_date'] ?? '-'),
-              IosInfoItem(label: '備考', value: iosData['remarks'] ?? '-'),
+              DetailItem(label: 'ios名', value: iosData['ios_name'] ?? '-'),
+              DetailItem(label: 'メーカー', value: iosData['manufacturer'] ?? '-'),
+              DetailItem(label: '型', value: iosData['type'] ?? '-'),
+              DetailItem(label: 'OS', value: iosData['os'] ?? '-'),
+              DetailItem(label: 'キャリア', value: iosData['carrier'] ?? '-'),
+              DetailItem(label: '状態', value: iosData['condition'] ?? '-'),
+              DetailItem(label: '納品日', value: iosData['delivery_date'] ?? '-'),
+              DetailItem(label: '廃棄日', value: iosData['disposal_date'] ?? '-'),
+              DetailItem(label: '備考', value: iosData['remarks'] ?? '-'),
             ],
           ),
         ),

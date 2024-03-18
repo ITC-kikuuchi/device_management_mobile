@@ -5,51 +5,13 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../app_bar/app_bar.dart';
+import '../widgets/detail_item.dart';
 
 class androidDetailPage extends StatefulWidget {
   final int androidId;
   androidDetailPage({required this.androidId});
   @override
   _androidDetailPage createState() => _androidDetailPage();
-}
-
-// Android情報を表示するウィジェット
-class AndroidInfoItem extends StatelessWidget {
-  final String label;
-  final String value;
-
-  const AndroidInfoItem({
-    required this.label,
-    required this.value,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(25, 8, 25, 5), // 左側に16の余白を追加
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // ラベルを左寄せに配置
-          Text(
-            label,
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          SizedBox(height: 4), // ラベルと値の間隔を設定
-          // 値を左寄せに配置
-          Text(
-            value,
-            style: TextStyle(
-              fontSize: 18,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 }
 
 class _androidDetailPage extends State<androidDetailPage> {
@@ -129,15 +91,15 @@ class _androidDetailPage extends State<androidDetailPage> {
                 ),
               ),
               // Android情報を表示するウィジェット
-              AndroidInfoItem(label: 'Android名', value: androidData['android_name'] ?? '-'),
-              AndroidInfoItem(label: 'メーカー', value: androidData['manufacturer'] ?? '-'),
-              AndroidInfoItem(label: '型', value: androidData['type'] ?? '-'),
-              AndroidInfoItem(label: 'OS', value: androidData['os'] ?? '-'),
-              AndroidInfoItem(label: 'キャリア', value: androidData['carrier'] ?? '-'),
-              AndroidInfoItem(label: '状態', value: androidData['condition'] ?? '-'),
-              AndroidInfoItem(label: '納品日', value: androidData['delivery_date'] ?? '-'),
-              AndroidInfoItem(label: '廃棄日', value: androidData['disposal_date'] ?? '-'),
-              AndroidInfoItem(label: '備考', value: androidData['remarks'] ?? '-'),
+              DetailItem(label: 'Android名', value: androidData['android_name'] ?? '-'),
+              DetailItem(label: 'メーカー', value: androidData['manufacturer'] ?? '-'),
+              DetailItem(label: '型', value: androidData['type'] ?? '-'),
+              DetailItem(label: 'OS', value: androidData['os'] ?? '-'),
+              DetailItem(label: 'キャリア', value: androidData['carrier'] ?? '-'),
+              DetailItem(label: '状態', value: androidData['condition'] ?? '-'),
+              DetailItem(label: '納品日', value: androidData['delivery_date'] ?? '-'),
+              DetailItem(label: '廃棄日', value: androidData['disposal_date'] ?? '-'),
+              DetailItem(label: '備考', value: androidData['remarks'] ?? '-'),
             ],
           ),
         ),

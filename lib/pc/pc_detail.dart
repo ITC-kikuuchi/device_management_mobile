@@ -5,51 +5,13 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../app_bar/app_bar.dart';
+import '../widgets/detail_item.dart';
 
 class pcDetailPage extends StatefulWidget {
   final int pcId;
   pcDetailPage({required this.pcId});
   @override
   _pcDetailPage createState() => _pcDetailPage();
-}
-
-// PC情報を表示するウィジェット
-class PCInfoItem extends StatelessWidget {
-  final String label;
-  final String value;
-
-  const PCInfoItem({
-    required this.label,
-    required this.value,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(25, 8, 25, 5), // 左側に16の余白を追加
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // ラベルを左寄せに配置
-          Text(
-            label,
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          SizedBox(height: 4), // ラベルと値の間隔を設定
-          // 値を左寄せに配置
-          Text(
-            value,
-            style: TextStyle(
-              fontSize: 18,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 }
 
 class _pcDetailPage extends State<pcDetailPage> {
@@ -129,21 +91,21 @@ class _pcDetailPage extends State<pcDetailPage> {
                 ),
               ),
               // PC情報を表示するウィジェット
-              PCInfoItem(label: 'pc名', value: pcData['pc_name'] ?? '-'),
-              PCInfoItem(label: 'ユーザ名', value: pcData['user_name'] ?? '-'),
-              PCInfoItem(label: '使用者', value: pcData['pc_user'] ?? '-'),
-              PCInfoItem(label: '状態', value: pcData['condition'] ?? '-'),
-              PCInfoItem(label: 'メーカー', value: pcData['manufacturer'] ?? '-'),
-              PCInfoItem(label: '型', value: pcData['type'] ?? '-'),
-              PCInfoItem(label: 'サービスタグ', value: pcData['service_tag'] ?? '-'),
-              PCInfoItem(label: 'OS', value: pcData['os'] ?? '-'),
-              PCInfoItem(label: 'bit数', value: pcData['bit'].toString() ?? '-'),
-              PCInfoItem(label: 'IE Ver', value: pcData['ie_version'] ?? '-'),
-              PCInfoItem(label: 'IPアドレス', value: pcData['ip_address'] ?? '-'),
-              PCInfoItem(label: 'GX/WWPライセンス', value: pcData['gx_wwp_license'] ?? '-'),
-              PCInfoItem(label: '納品日', value: pcData['delivery_date'] ?? '-'),
-              PCInfoItem(label: '廃棄日', value: pcData['disposal_date'] ?? '-'),
-              PCInfoItem(label: '備考', value: pcData['remarks'] ?? '-'),
+              DetailItem(label: 'pc名', value: pcData['pc_name'] ?? '-'),
+              DetailItem(label: 'ユーザ名', value: pcData['user_name'] ?? '-'),
+              DetailItem(label: '使用者', value: pcData['pc_user'] ?? '-'),
+              DetailItem(label: '状態', value: pcData['condition'] ?? '-'),
+              DetailItem(label: 'メーカー', value: pcData['manufacturer'] ?? '-'),
+              DetailItem(label: '型', value: pcData['type'] ?? '-'),
+              DetailItem(label: 'サービスタグ', value: pcData['service_tag'] ?? '-'),
+              DetailItem(label: 'OS', value: pcData['os'] ?? '-'),
+              DetailItem(label: 'bit数', value: pcData['bit'].toString() ?? '-'),
+              DetailItem(label: 'IE Ver', value: pcData['ie_version'] ?? '-'),
+              DetailItem(label: 'IPアドレス', value: pcData['ip_address'] ?? '-'),
+              DetailItem(label: 'GX/WWPライセンス', value: pcData['gx_wwp_license'] ?? '-'),
+              DetailItem(label: '納品日', value: pcData['delivery_date'] ?? '-'),
+              DetailItem(label: '廃棄日', value: pcData['disposal_date'] ?? '-'),
+              DetailItem(label: '備考', value: pcData['remarks'] ?? '-'),
             ],
           ),
         ),
