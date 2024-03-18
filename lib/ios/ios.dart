@@ -118,7 +118,7 @@ class _iosPage extends State<iosPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           LastUpdatedUser(userData: userData),
-          _buildIosCards(),
+          CardList(deviceList: iosList, deviceId: 2),
         ],
       ),
     );

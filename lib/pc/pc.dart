@@ -119,7 +119,7 @@ class _pcPage extends State<pcPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           LastUpdatedUser(userData: userData),
-          _buildPcCards(),
+          CardList(deviceList: pcList, deviceId: 1),
         ],
       ),
     );
