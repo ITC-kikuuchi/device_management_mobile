@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../pc/pc_detail.dart';
 import '../ios/ios_detail.dart';
 import '../android/android_detail.dart';
+import '../constants.dart';
 
 class CardList extends StatefulWidget {
   late List<Map<String, dynamic>> deviceList;
@@ -58,11 +59,11 @@ class _CardList extends State<CardList> {
                   MaterialPageRoute(
                     builder: (context) {
                       switch (widget.deviceId) {
-                        case 1:
+                        case DeviceId.pc:
                           return pcDetailPage(pcId: id);
-                        case 2:
+                        case DeviceId.ios:
                           return iosDetailPage(iosId: id);
-                        case 3:
+                        case DeviceId.android:
                           return androidDetailPage(androidId: id);
                         default:
                           throw Exception(
