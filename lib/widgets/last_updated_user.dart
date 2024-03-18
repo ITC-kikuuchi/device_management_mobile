@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class LastUpdatedUser extends StatefulWidget {
-  Map<String, dynamic> userData;
+  final Map<String, dynamic> userData;
   LastUpdatedUser({required this.userData});
   @override
   _LastUpdatedUser createState() => _LastUpdatedUser();
