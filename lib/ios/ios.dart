@@ -174,7 +174,7 @@ class _iosPage extends State<iosPage> {
               text: '${userData['user_name'] ?? ''}',
               style: TextStyle(
                 fontSize: 18,
-                color: Colors.red, // 任意の色を指定してください
+                color: Colors.red,
               ),
             ),
           ],
