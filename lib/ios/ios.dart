@@ -6,7 +6,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../app_bar/app_bar.dart';
 import '../drawer/drawer.dart';
-import '../ios/ios_detail.dart';
+import '../widgets/last_updated_user.dart';
+import '../widgets/card_list.dart';
 
 class iosPage extends StatefulWidget {
   @override
@@ -108,81 +109,6 @@ class _iosPage extends State<iosPage> {
     }
   }
 
-  /**
-   * ios一覧を表示する処理
-   */
-  Widget _buildIosCards() {
-    return Expanded(
-      child: ListView.builder(
-        shrinkWrap: true,
-        itemCount: iosList.length,
-        itemBuilder: (context, index) {
-          final bool isDeleted =
-              iosList[index]['delete_flag'] == true; // delete_flagがtrueかどうかを判定
-          final Color cardColor =
-              isDeleted ? Color.fromARGB(255, 188, 188, 188) : Colors.white;
-
-          final bool last_updated_flag = iosList[index]['last_updated_flag'] ==
-              true; // last_updated_flagがtrueかどうかを判定
-          final Color textColor =
-              last_updated_flag ? Color.fromARGB(255, 255, 0, 0) : Colors.black;
-
-          return Card(
-            color: cardColor,
-            child: ListTile(
-              title: Text(
-                iosList[index]['label_name'] ?? '',
-                style: TextStyle(color: textColor), // テキストの色を設定
-              ),
-              subtitle: Text(
-                'OS:${iosList[index]['os'] ?? ''}',
-                style: TextStyle(color: textColor), // テキストの色を設定
-              ),
-              onTap: () {
-                // タップ時の処理
-                final iosId = iosList[index]['id']; // idを取得
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => iosDetailPage(iosId: iosId)),
-                );
-              },
-            ),
-          );
-        },
-      ),
-    );
-  }
-
-  /**
-   * ios最終更新者を表示する処理
-   */
-  Widget _buildLastUpdatedUser() {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(15, 8, 0, 8),
-      child: RichText(
-        text: TextSpan(
-          children: [
-            TextSpan(
-              text: '最終更新者:',
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.black,
-              ),
-            ),
-            TextSpan(
-              text: '${userData['user_name'] ?? ''}',
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.red,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -191,8 +117,8 @@ class _iosPage extends State<iosPage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildLastUpdatedUser(),
-          _buildIosCards(),
+          LastUpdatedUser(userData: userData),
+          CardList(deviceList: iosList, deviceId: 2),
         ],
       ),
     );

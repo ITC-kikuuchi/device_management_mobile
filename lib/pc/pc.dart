@@ -6,7 +6,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../app_bar/app_bar.dart';
 import '../drawer/drawer.dart';
-import '../pc/pc_detail.dart';
+import '../widgets/last_updated_user.dart';
+import '../widgets/card_list.dart';
 
 class pcPage extends StatefulWidget {
   @override
@@ -109,81 +110,6 @@ class _pcPage extends State<pcPage> {
     }
   }
 
-  /**
-   * pc一覧を表示する処理
-   */
-  Widget _buildPcCards() {
-    return Expanded(
-      child: ListView.builder(
-        shrinkWrap: true,
-        itemCount: pcList.length,
-        itemBuilder: (context, index) {
-          final bool isDeleted =
-              pcList[index]['delete_flag'] == true; // delete_flagがtrueかどうかを判定
-          final Color cardColor =
-              isDeleted ? Color.fromARGB(255, 188, 188, 188) : Colors.white;
-
-          final bool last_updated_flag = pcList[index]['last_updated_flag'] ==
-              true; // last_updated_flagがtrueかどうかを判定
-          final Color textColor =
-              last_updated_flag ? Color.fromARGB(255, 255, 0, 0) : Colors.black;
-
-          return Card(
-            color: cardColor,
-            child: ListTile(
-              title: Text(
-                pcList[index]['label_name'] ?? '',
-                style: TextStyle(color: textColor), // テキストの色を設定
-              ),
-              subtitle: Text(
-                '使用者:${pcList[index]['pc_user'] ?? ''}',
-                style: TextStyle(color: textColor), // テキストの色を設定
-              ),
-              onTap: () {
-                // タップ時の処理
-                final pcId = pcList[index]['id']; // idを取得
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => pcDetailPage(pcId: pcId)),
-                );
-              },
-            ),
-          );
-        },
-      ),
-    );
-  }
-
-  /**
-   * pc最終更新者を表示する処理
-   */
-  Widget _buildLastUpdatedUser() {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(15, 8, 0, 8),
-      child: RichText(
-        text: TextSpan(
-          children: [
-            TextSpan(
-              text: '最終更新者:',
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.black,
-              ),
-            ),
-            TextSpan(
-              text: '${userData['user_name'] ?? ''}',
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.red,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -192,8 +118,8 @@ class _pcPage extends State<pcPage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildLastUpdatedUser(),
-          _buildPcCards(),
+          LastUpdatedUser(userData: userData),
+          CardList(deviceList: pcList, deviceId: 1),
         ],
       ),
     );
