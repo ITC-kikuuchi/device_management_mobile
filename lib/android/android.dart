@@ -119,7 +119,7 @@ class _androidPage extends State<androidPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           LastUpdatedUser(userData: userData),
-          CardList(deviceList: androidList, deviceId: 3),
+          CardList(deviceList: androidList, deviceId: DeviceId.android),
         ],
       ),
     );
