@@ -43,6 +43,32 @@ class _windowsDetailPage extends State<windowsDetailPage> {
     accessToken = prefs.getString('access_token') ?? "";
   }
 
+  /**
+   * windows詳細取得
+   */
+  Future<String> _getWindowsDetail() async {
+    try {
+      final response = await http.get(
+        Uri.parse('http://localhost:3001/windows/${widget.windowsId}'),
+        headers: <String, String>{
+          'Authorization': 'Bearer $accessToken',
+        },
+      );
+      if (response.statusCode == 200) {
+        final String responseBody = utf8.decode(response.bodyBytes);
+        setState(() {
+          windowsData = json.decode(responseBody);
+        });
+      } else {
+        throw Exception('Failed to load data');
+      }
+      return '';
+    } catch (e) {
+      print('Error fetching Windows data: $e');
+      return '';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
