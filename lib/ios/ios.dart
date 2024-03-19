@@ -8,6 +8,7 @@ import '../app_bar/app_bar.dart';
 import '../drawer/drawer.dart';
 import '../widgets/last_updated_user.dart';
 import '../widgets/card_list.dart';
+import '../constants.dart';
 
 class iosPage extends StatefulWidget {
   @override
@@ -118,7 +119,7 @@ class _iosPage extends State<iosPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           LastUpdatedUser(userData: userData),
-          CardList(deviceList: iosList, deviceId: 2),
+          CardList(deviceList: iosList, deviceId: DeviceId.ios),
         ],
       ),
     );

@@ -8,6 +8,7 @@ import '../app_bar/app_bar.dart';
 import '../drawer/drawer.dart';
 import '../widgets/last_updated_user.dart';
 import '../widgets/card_list.dart';
+import '../constants.dart';
 
 class pcPage extends StatefulWidget {
   @override
@@ -119,7 +120,7 @@ class _pcPage extends State<pcPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           LastUpdatedUser(userData: userData),
-          CardList(deviceList: pcList, deviceId: 1),
+          CardList(deviceList: pcList, deviceId: DeviceId.pc),
         ],
       ),
     );
