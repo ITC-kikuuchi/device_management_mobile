@@ -34,6 +34,15 @@ class _windowsDetailPage extends State<windowsDetailPage> {
     await _getAccessToken();
     await _getWindowsDetail();
   }
+
+  /**
+   * ログインユーザのトークン取得
+   */
+  Future<void> _getAccessToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    accessToken = prefs.getString('access_token') ?? "";
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
