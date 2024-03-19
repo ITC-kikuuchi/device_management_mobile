@@ -28,6 +28,12 @@ class _windowsPage extends State<windowsPage> {
     super.initState();
     _initializePage();
   }
+
+  Future<void> _initializePage() async {
+    await _getAccessToken();
+    await _getWindows();
+    await _getLastUpdatedUser();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
