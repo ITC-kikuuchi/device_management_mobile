@@ -115,6 +115,13 @@ class _windowsPage extends State<windowsPage> {
     return Scaffold(
       appBar: MyAppBar(),
       drawer: MyDrawer(),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          LastUpdatedUser(userData: userData),
+          CardList(deviceList: windowsList, deviceId: DeviceId.windows),
+        ],
+      ),
     );
   }
 }
