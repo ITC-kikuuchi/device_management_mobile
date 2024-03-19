@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../pc/pc_detail.dart';
 import '../ios/ios_detail.dart';
 import '../android/android_detail.dart';
+import '../windows/windows_detail.dart';
 import '../constants.dart';
 
 class CardList extends StatefulWidget {
@@ -65,6 +66,8 @@ class _CardList extends State<CardList> {
                           return iosDetailPage(iosId: id);
                         case DeviceId.android:
                           return androidDetailPage(androidId: id);
+                        case DeviceId.windows:
+                          return windowsDetailPage(windowsId: id);
                         default:
                           throw Exception(
                               'Invalid device ID: ${widget.deviceId}');
