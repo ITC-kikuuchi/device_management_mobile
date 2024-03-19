@@ -73,6 +73,37 @@ class _windowsDetailPage extends State<windowsDetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBar(),
+      body: SingleChildScrollView(
+        // SingleChildScrollViewでラップ
+        child: Container(
+          padding: EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(25, 0, 25, 8),
+                child: Text(
+                  windowsData['label_name'] ?? '-',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              // Windows情報を表示するウィジェット
+              DetailItem(label: 'windows名', value: windowsData['windows_name'] ?? '-'),
+              DetailItem(label: 'メーカー', value: windowsData['manufacturer'] ?? '-'),
+              DetailItem(label: '型', value: windowsData['type'] ?? '-'),
+              DetailItem(label: 'OS', value: windowsData['os'] ?? '-'),
+              DetailItem(label: 'キャリア', value: windowsData['carrier'] ?? '-'),
+              DetailItem(label: '状態', value: windowsData['condition'] ?? '-'),
+              DetailItem(label: '納品日', value: windowsData['delivery_date'] ?? '-'),
+              DetailItem(label: '廃棄日', value: windowsData['disposal_date'] ?? '-'),
+              DetailItem(label: '備考', value: windowsData['remarks'] ?? '-'),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
