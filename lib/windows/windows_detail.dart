@@ -15,6 +15,8 @@ class windowsDetailPage extends StatefulWidget {
 }
 
 class _windowsDetailPage extends State<windowsDetailPage> {
+  late String accessToken;
+  Map<String, dynamic> windowsData = {};
 
   @override
   Widget build(BuildContext context) {
