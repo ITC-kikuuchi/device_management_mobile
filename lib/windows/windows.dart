@@ -20,6 +20,14 @@ class _windowsPage extends State<windowsPage> {
   late List<Map<String, dynamic>> windowsList = [];
   Map<String, dynamic> userData = {};
 
+  /**
+   * 画面の初期化
+   */
+  @override
+  void initState() {
+    super.initState();
+    _initializePage();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
