@@ -66,6 +66,8 @@ class _CardList extends State<CardList> {
                           return iosDetailPage(iosId: id);
                         case DeviceId.android:
                           return androidDetailPage(androidId: id);
+                        case DeviceId.windows:
+                          return windowsDetailPage(windowsId: id);
                         default:
                           throw Exception(
                               'Invalid device ID: ${widget.deviceId}');
