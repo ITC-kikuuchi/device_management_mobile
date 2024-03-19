@@ -90,7 +90,7 @@ class _windowsPage extends State<windowsPage> {
   Future<String> _getLastUpdatedUser() async {
     try {
       final response = await http.get(
-        Uri.parse('http://localhost:3001/pc_update_user'),
+        Uri.parse('http://localhost:3001/windows_update_user'),
         headers: <String, String>{
           'Authorization': 'Bearer $accessToken',
         },
