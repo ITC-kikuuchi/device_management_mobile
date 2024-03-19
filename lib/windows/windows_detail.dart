@@ -18,6 +18,14 @@ class _windowsDetailPage extends State<windowsDetailPage> {
   late String accessToken;
   Map<String, dynamic> windowsData = {};
 
+  /**
+   * 画面の初期化
+   */
+  @override
+  void initState() {
+    super.initState();
+    _initializePage();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
