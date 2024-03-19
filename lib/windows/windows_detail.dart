@@ -26,6 +26,14 @@ class _windowsDetailPage extends State<windowsDetailPage> {
     super.initState();
     _initializePage();
   }
+
+  /**
+   * 初期化される際に実行する関数の呼び出し
+   */
+  Future<void> _initializePage() async {
+    await _getAccessToken();
+    await _getWindowsDetail();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
