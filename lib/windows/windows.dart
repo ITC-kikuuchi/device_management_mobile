@@ -42,6 +42,47 @@ class _windowsPage extends State<windowsPage> {
     final prefs = await SharedPreferences.getInstance();
     accessToken = prefs.getString('access_token') ?? "";
   }
+
+  /**
+   * windows一覧取得
+   */
+  Future<String> _getWindows() async {
+    try {
+      final response = await http.get(
+        Uri.parse('http://localhost:3001/windows'),
+        headers: <String, String>{
+          'Authorization': 'Bearer $accessToken',
+        },
+      );
+      if (response.statusCode == 200) {
+        final String responseBody = utf8.decode(response.bodyBytes);
+        final List<dynamic> data = json.decode(responseBody);
+        setState(() {
+          windowsList = data
+              .map((windows) => {
+                    'id': windows['id'],
+                    'label_name': windows['label_name'] != null
+                        ? windows['label_name'] as String
+                        : '',
+                    'os': windows['os'] != null ? windows['os'] as String : '',
+                    'delete_flag': windows['delete_flag'] != null
+                        ? windows['delete_flag'] as bool
+                        : false,
+                    'last_updated_flag': windows['last_updated_flag'] != null
+                        ? windows['last_updated_flag'] as bool
+                        : false,
+                  })
+              .toList();
+        });
+      } else {
+        throw Exception('Failed to load data');
+      }
+      return '';
+    } catch (e) {
+      print('Error fetching Windows data: $e');
+      return '';
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
