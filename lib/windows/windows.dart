@@ -83,6 +83,33 @@ class _windowsPage extends State<windowsPage> {
       return '';
     }
   }
+
+  /**
+   * windows最終更新者取得
+   */
+  Future<String> _getLastUpdatedUser() async {
+    try {
+      final response = await http.get(
+        Uri.parse('http://localhost:3001/pc_update_user'),
+        headers: <String, String>{
+          'Authorization': 'Bearer $accessToken',
+        },
+      );
+      if (response.statusCode == 200) {
+        final String responseBody = utf8.decode(response.bodyBytes);
+        setState(() {
+          userData = json.decode(responseBody);
+        });
+      } else {
+        throw Exception('Failed to load data');
+      }
+      return '';
+    } catch (e) {
+      print('Error fetching user data: $e');
+      return '';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
