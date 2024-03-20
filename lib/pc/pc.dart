@@ -79,7 +79,7 @@ class _pcPage extends State<pcPage> {
       } else if (response.statusCode == 401) {
         showDialog(
           context: context,
-          barrierDismissible: false, // (追加)ユーザーがモーダルを閉じないようにする
+          barrierDismissible: false,
           builder: (BuildContext context) {
             return GestureDetector(
               onTap: () => Navigator.pop(context),
@@ -94,8 +94,8 @@ class _pcPage extends State<pcPage> {
                         'セッション切れのため\nログアウトします',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontSize: 16.0, // 文字サイズを変更
-                          fontWeight: FontWeight.bold, // 太さを変更
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                       SizedBox(height: 40),
