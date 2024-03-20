@@ -75,6 +75,7 @@ class _pcPage extends State<pcPage> {
                   })
               .toList();
         });
+      } else if (response.statusCode == 401) {
       } else {
         throw Exception('Failed to load data');
       }
