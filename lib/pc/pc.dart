@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../app_bar/app_bar.dart';
 import '../drawer/drawer.dart';
+import '../login/login.dart';
 import '../widgets/last_updated_user.dart';
 import '../widgets/card_list.dart';
 import '../constants.dart';
@@ -75,6 +76,55 @@ class _pcPage extends State<pcPage> {
                   })
               .toList();
         });
+      } else if (response.statusCode == 401) {
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return GestureDetector(
+              onTap: () => Navigator.pop(context),
+              child: Dialog(
+                child: Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        'セッション切れのため\nログアウトします',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 40),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () async {
+                              final prefs =
+                                  await SharedPreferences.getInstance();
+                              await prefs.remove('access_token');
+                              Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LoginPage()),
+                                (route) => false,
+                              );
+                            },
+                            child: Text('はい'),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          },
+        );
       } else {
         throw Exception('Failed to load data');
       }
