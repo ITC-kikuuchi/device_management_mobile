@@ -76,6 +76,54 @@ class _pcPage extends State<pcPage> {
               .toList();
         });
       } else if (response.statusCode == 401) {
+        showDialog(
+          context: context,
+          barrierDismissible: false, // (追加)ユーザーがモーダルを閉じないようにする
+          builder: (BuildContext context) {
+            return GestureDetector(
+              onTap: () => Navigator.pop(context),
+              child: Dialog(
+                child: Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        'セッション切れのため\nログアウトします',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 16.0, // 文字サイズを変更
+                          fontWeight: FontWeight.bold, // 太さを変更
+                        ),
+                      ),
+                      SizedBox(height: 40),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () async {
+                              final prefs =
+                                  await SharedPreferences.getInstance();
+                              await prefs.remove('access_token');
+                              Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LoginPage()),
+                                (route) => false,
+                              );
+                            },
+                            child: Text('はい'),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          },
+        );
       } else {
         throw Exception('Failed to load data');
       }
