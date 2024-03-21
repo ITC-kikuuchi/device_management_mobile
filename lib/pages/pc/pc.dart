@@ -6,7 +6,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../app_bar/app_bar.dart';
 import '../../drawer/drawer.dart';
-import '../login/login.dart';
 import '../../widgets/last_updated_user.dart';
 import '../../widgets/card_list.dart';
 import '../../constants.dart';
@@ -81,58 +80,6 @@ class _pcPage extends State<pcPage> {
           context: context,
           barrierDismissible: false,
           builder: (BuildContext context) {
-            return GestureDetector(
-              onTap: () => Navigator.pop(context),
-              child: Dialog(
-                backgroundColor: Colors.white,
-                child: Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        'セッション切れのため\nログアウトします',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      SizedBox(height: 40),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              shadowColor: Colors.grey,
-                              elevation: 5,
-                              backgroundColor: Colors.blueAccent,
-                              shape: const StadiumBorder(),
-                            ),
-                            onPressed: () async {
-                              final prefs =
-                                  await SharedPreferences.getInstance();
-                              await prefs.remove('access_token');
-                              Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => LoginPage()),
-                                (route) => false,
-                              );
-                            },
-                            child: Text(
-                              'OK',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            );
           },
         );
       } else {
