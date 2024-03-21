@@ -4,20 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../app_bar/app_bar.dart';
-import '../widgets/detail_item.dart';
-import '../constants.dart';
+import '../../app_bar/app_bar.dart';
+import '../../widgets/detail_item.dart';
+import '../../constants.dart';
 
-class iosDetailPage extends StatefulWidget {
-  final int iosId;
-  iosDetailPage({required this.iosId});
+class windowsDetailPage extends StatefulWidget {
+  final int windowsId;
+  windowsDetailPage({required this.windowsId});
   @override
-  _iosDetailPage createState() => _iosDetailPage();
+  _windowsDetailPage createState() => _windowsDetailPage();
 }
 
-class _iosDetailPage extends State<iosDetailPage> {
+class _windowsDetailPage extends State<windowsDetailPage> {
   late String accessToken;
-  Map<String, dynamic> iosData = {};
+  Map<String, dynamic> windowsData = {};
 
   /**
    * 画面の初期化
@@ -33,7 +33,7 @@ class _iosDetailPage extends State<iosDetailPage> {
    */
   Future<void> _initializePage() async {
     await _getAccessToken();
-    await _getIosDetail();
+    await _getWindowsDetail();
   }
 
   /**
@@ -45,12 +45,12 @@ class _iosDetailPage extends State<iosDetailPage> {
   }
 
   /**
-   * iOS詳細取得
+   * windows詳細取得
    */
-  Future<String> _getIosDetail() async {
+  Future<String> _getWindowsDetail() async {
     try {
       final response = await http.get(
-        Uri.parse('http://localhost:3001/ios/${widget.iosId}'),
+        Uri.parse('http://localhost:3001/windows/${widget.windowsId}'),
         headers: <String, String>{
           'Authorization': 'Bearer $accessToken',
         },
@@ -58,14 +58,14 @@ class _iosDetailPage extends State<iosDetailPage> {
       if (response.statusCode == HttpStatusCode.ok) {
         final String responseBody = utf8.decode(response.bodyBytes);
         setState(() {
-          iosData = json.decode(responseBody);
+          windowsData = json.decode(responseBody);
         });
       } else {
         throw Exception('Failed to load data');
       }
       return '';
     } catch (e) {
-      print('Error fetching IOS data: $e');
+      print('Error fetching Windows data: $e');
       return '';
     }
   }
@@ -84,23 +84,23 @@ class _iosDetailPage extends State<iosDetailPage> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(25, 0, 25, 8),
                 child: Text(
-                  iosData['label_name'] ?? '-',
+                  windowsData['label_name'] ?? '-',
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
-              // iOS情報を表示するウィジェット
-              DetailItem(label: 'ios名', value: iosData['ios_name'] ?? '-'),
-              DetailItem(label: 'メーカー', value: iosData['manufacturer'] ?? '-'),
-              DetailItem(label: '型', value: iosData['type'] ?? '-'),
-              DetailItem(label: 'OS', value: iosData['os'] ?? '-'),
-              DetailItem(label: 'キャリア', value: iosData['carrier'] ?? '-'),
-              DetailItem(label: '状態', value: iosData['condition'] ?? '-'),
-              DetailItem(label: '納品日', value: iosData['delivery_date'] ?? '-'),
-              DetailItem(label: '廃棄日', value: iosData['disposal_date'] ?? '-'),
-              DetailItem(label: '備考', value: iosData['remarks'] ?? '-'),
+              // Windows情報を表示するウィジェット
+              DetailItem(label: 'windows名', value: windowsData['windows_name'] ?? '-'),
+              DetailItem(label: 'メーカー', value: windowsData['manufacturer'] ?? '-'),
+              DetailItem(label: '型', value: windowsData['type'] ?? '-'),
+              DetailItem(label: 'OS', value: windowsData['os'] ?? '-'),
+              DetailItem(label: 'キャリア', value: windowsData['carrier'] ?? '-'),
+              DetailItem(label: '状態', value: windowsData['condition'] ?? '-'),
+              DetailItem(label: '納品日', value: windowsData['delivery_date'] ?? '-'),
+              DetailItem(label: '廃棄日', value: windowsData['disposal_date'] ?? '-'),
+              DetailItem(label: '備考', value: windowsData['remarks'] ?? '-'),
             ],
           ),
         ),

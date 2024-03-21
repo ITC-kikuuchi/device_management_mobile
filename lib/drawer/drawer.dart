@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../pc/pc.dart';
-import '../ios/ios.dart';
-import '../android/android.dart';
-import '../windows/windows.dart';
+import '../pages/pc/pc.dart';
+import '../pages/ios/ios.dart';
+import '../pages/android/android.dart';
+import '../pages/windows/windows.dart';
 
 class MyDrawer extends StatelessWidget {
   @override
