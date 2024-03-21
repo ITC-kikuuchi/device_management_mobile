@@ -75,6 +75,15 @@ class _windowsPage extends State<windowsPage> {
                   })
               .toList();
         });
+      } else if (response.statusCode == HttpStatusCode.unauthorized) {
+        // セッション切れの場合、ダイアログを表示
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return EnforcementLogoutDialog();
+          },
+        );
       } else {
         throw Exception('Failed to load data');
       }
