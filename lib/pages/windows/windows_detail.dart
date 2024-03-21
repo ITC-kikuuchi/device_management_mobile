@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../app_bar/app_bar.dart';
 import '../../widgets/detail_item.dart';
+import '../../widgets/enforcement_logout_dialog.dart';
 import '../../constants.dart';
 
 class windowsDetailPage extends StatefulWidget {
@@ -60,6 +61,15 @@ class _windowsDetailPage extends State<windowsDetailPage> {
         setState(() {
           windowsData = json.decode(responseBody);
         });
+      } else if (response.statusCode == HttpStatusCode.unauthorized) {
+        // セッション切れの場合、ダイアログを表示
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return EnforcementLogoutDialog();
+          },
+        );
       } else {
         throw Exception('Failed to load data');
       }
@@ -92,14 +102,18 @@ class _windowsDetailPage extends State<windowsDetailPage> {
                 ),
               ),
               // Windows情報を表示するウィジェット
-              DetailItem(label: 'windows名', value: windowsData['windows_name'] ?? '-'),
-              DetailItem(label: 'メーカー', value: windowsData['manufacturer'] ?? '-'),
+              DetailItem(
+                  label: 'windows名', value: windowsData['windows_name'] ?? '-'),
+              DetailItem(
+                  label: 'メーカー', value: windowsData['manufacturer'] ?? '-'),
               DetailItem(label: '型', value: windowsData['type'] ?? '-'),
               DetailItem(label: 'OS', value: windowsData['os'] ?? '-'),
               DetailItem(label: 'キャリア', value: windowsData['carrier'] ?? '-'),
               DetailItem(label: '状態', value: windowsData['condition'] ?? '-'),
-              DetailItem(label: '納品日', value: windowsData['delivery_date'] ?? '-'),
-              DetailItem(label: '廃棄日', value: windowsData['disposal_date'] ?? '-'),
+              DetailItem(
+                  label: '納品日', value: windowsData['delivery_date'] ?? '-'),
+              DetailItem(
+                  label: '廃棄日', value: windowsData['disposal_date'] ?? '-'),
               DetailItem(label: '備考', value: windowsData['remarks'] ?? '-'),
             ],
           ),
