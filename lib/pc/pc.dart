@@ -121,7 +121,10 @@ class _pcPage extends State<pcPage> {
                                 (route) => false,
                               );
                             },
-                            child: Text('はい'),
+                            child: Text(
+                              'OK',
+                              style: TextStyle(color: Colors.white),
+                            ),
                           ),
                         ],
                       ),
