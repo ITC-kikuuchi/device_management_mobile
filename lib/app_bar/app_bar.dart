@@ -54,11 +54,12 @@ class LoginAppBar extends StatelessWidget implements PreferredSizeWidget {
 void _showDialog(BuildContext context) {
   showDialog<void>(
     context: context,
-    barrierDismissible: false, // (追加)ユーザーがモーダルを閉じないようにする
+    barrierDismissible: false,
     builder: (BuildContext context) {
       return GestureDetector(
         onTap: () => Navigator.pop(context),
         child: Dialog(
+          backgroundColor: Colors.white,
           child: Container(
             width: double.infinity,
             padding: const EdgeInsets.all(20.0),
@@ -77,10 +78,31 @@ void _showDialog(BuildContext context) {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        side: const BorderSide(
+                          width: 1.0,
+                          color: Colors.blueAccent,
+                        ),
+                        shadowColor: Colors.grey,
+                        elevation: 5,
+                        backgroundColor: Colors.white,
+                        shape: const StadiumBorder(),
+                      ),
                       onPressed: () => Navigator.pop(context),
-                      child: Text('いいえ'),
+                      child: Text(
+                        'いいえ',
+                        style: TextStyle(
+                          color: Colors.black,
+                        ),
+                      ),
                     ),
                     ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        shadowColor: Colors.grey,
+                        elevation: 5,
+                        backgroundColor: Colors.blueAccent,
+                        shape: const StadiumBorder(),
+                      ),
                       onPressed: () async {
                         final prefs = await SharedPreferences.getInstance();
                         await prefs.remove('access_token');
@@ -90,7 +112,12 @@ void _showDialog(BuildContext context) {
                           (route) => false,
                         );
                       },
-                      child: Text('はい'),
+                      child: Text(
+                        'はい',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                   ],
                 ),

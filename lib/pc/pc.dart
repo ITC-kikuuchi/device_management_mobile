@@ -84,6 +84,7 @@ class _pcPage extends State<pcPage> {
             return GestureDetector(
               onTap: () => Navigator.pop(context),
               child: Dialog(
+                backgroundColor: Colors.white,
                 child: Container(
                   width: double.infinity,
                   padding: const EdgeInsets.all(20.0),
@@ -103,6 +104,12 @@ class _pcPage extends State<pcPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              shadowColor: Colors.grey,
+                              elevation: 5,
+                              backgroundColor: Colors.blueAccent,
+                              shape: const StadiumBorder(),
+                            ),
                             onPressed: () async {
                               final prefs =
                                   await SharedPreferences.getInstance();
@@ -114,7 +121,10 @@ class _pcPage extends State<pcPage> {
                                 (route) => false,
                               );
                             },
-                            child: Text('はい'),
+                            child: Text(
+                              'OK',
+                              style: TextStyle(color: Colors.white),
+                            ),
                           ),
                         ],
                       ),
