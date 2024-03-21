@@ -60,6 +60,7 @@ class _pcDetailPage extends State<pcDetailPage> {
         setState(() {
           pcData = json.decode(responseBody);
         });
+      } else if (response.statusCode == 401) {
       } else {
         throw Exception('Failed to load data');
       }
