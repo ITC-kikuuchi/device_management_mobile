@@ -54,7 +54,7 @@ class LoginAppBar extends StatelessWidget implements PreferredSizeWidget {
 void _showDialog(BuildContext context) {
   showDialog<void>(
     context: context,
-    barrierDismissible: false, // (追加)ユーザーがモーダルを閉じないようにする
+    barrierDismissible: false,
     builder: (BuildContext context) {
       return GestureDetector(
         onTap: () => Navigator.pop(context),
