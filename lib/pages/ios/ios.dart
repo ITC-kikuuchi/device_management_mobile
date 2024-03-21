@@ -74,6 +74,7 @@ class _iosPage extends State<iosPage> {
                   })
               .toList();
         });
+      } else if (response.statusCode == HttpStatusCode.unauthorized) {
       } else {
         throw Exception('Failed to load data');
       }
