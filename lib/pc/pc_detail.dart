@@ -165,7 +165,8 @@ class _pcDetailPage extends State<pcDetailPage> {
               ),
               DetailItem(label: 'IE Ver', value: pcData['ie_version'] ?? '-'),
               DetailItem(label: 'IPアドレス', value: pcData['ip_address'] ?? '-'),
-              DetailItem(label: 'GX/WWPライセンス', value: pcData['gx_wwp_license'] ?? '-'),
+              DetailItem(
+                  label: 'GX/WWPライセンス', value: pcData['gx_wwp_license'] ?? '-'),
               DetailItem(label: '納品日', value: pcData['delivery_date'] ?? '-'),
               DetailItem(label: '廃棄日', value: pcData['disposal_date'] ?? '-'),
               DetailItem(label: '備考', value: pcData['remarks'] ?? '-'),
