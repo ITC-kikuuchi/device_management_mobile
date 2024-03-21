@@ -104,6 +104,12 @@ class _pcPage extends State<pcPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              shadowColor: Colors.grey,
+                              elevation: 5,
+                              backgroundColor: Colors.blueAccent,
+                              shape: const StadiumBorder(),
+                            ),
                             onPressed: () async {
                               final prefs =
                                   await SharedPreferences.getInstance();
