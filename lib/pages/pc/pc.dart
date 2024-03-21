@@ -77,10 +77,12 @@ class _pcPage extends State<pcPage> {
               .toList();
         });
       } else if (response.statusCode == HttpStatusCode.unauthorized) {
+        // セッション切れの場合、ダイアログを表示
         showDialog(
           context: context,
           barrierDismissible: false,
           builder: (BuildContext context) {
+            return EnforcementLogoutDialog();
           },
         );
       } else {
