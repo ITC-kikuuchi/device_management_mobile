@@ -102,14 +102,18 @@ class _androidDetailPage extends State<androidDetailPage> {
                 ),
               ),
               // Android情報を表示するウィジェット
-              DetailItem(label: 'Android名', value: androidData['android_name'] ?? '-'),
-              DetailItem(label: 'メーカー', value: androidData['manufacturer'] ?? '-'),
+              DetailItem(
+                  label: 'Android名', value: androidData['android_name'] ?? '-'),
+              DetailItem(
+                  label: 'メーカー', value: androidData['manufacturer'] ?? '-'),
               DetailItem(label: '型', value: androidData['type'] ?? '-'),
               DetailItem(label: 'OS', value: androidData['os'] ?? '-'),
               DetailItem(label: 'キャリア', value: androidData['carrier'] ?? '-'),
               DetailItem(label: '状態', value: androidData['condition'] ?? '-'),
-              DetailItem(label: '納品日', value: androidData['delivery_date'] ?? '-'),
-              DetailItem(label: '廃棄日', value: androidData['disposal_date'] ?? '-'),
+              DetailItem(
+                  label: '納品日', value: androidData['delivery_date'] ?? '-'),
+              DetailItem(
+                  label: '廃棄日', value: androidData['disposal_date'] ?? '-'),
               DetailItem(label: '備考', value: androidData['remarks'] ?? '-'),
             ],
           ),
