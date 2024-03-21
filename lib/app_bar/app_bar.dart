@@ -89,7 +89,12 @@ void _showDialog(BuildContext context) {
                         shape: const StadiumBorder(),
                       ),
                       onPressed: () => Navigator.pop(context),
-                      child: Text('いいえ'),
+                      child: Text(
+                        'いいえ',
+                        style: TextStyle(
+                          color: Colors.black,
+                        ),
+                      ),
                     ),
                     ElevatedButton(
                       onPressed: () async {
