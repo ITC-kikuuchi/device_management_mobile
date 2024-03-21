@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../app_bar/app_bar.dart';
 import '../../widgets/detail_item.dart';
+import '../../widgets/enforcement_logout_dialog.dart';
 import '../../constants.dart';
 
 class androidDetailPage extends StatefulWidget {
