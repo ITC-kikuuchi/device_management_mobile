@@ -4,20 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../app_bar/app_bar.dart';
-import '../drawer/drawer.dart';
-import '../widgets/last_updated_user.dart';
-import '../widgets/card_list.dart';
-import '../constants.dart';
+import '../../app_bar/app_bar.dart';
+import '../../drawer/drawer.dart';
+import '../../widgets/last_updated_user.dart';
+import '../../widgets/card_list.dart';
+import '../../constants.dart';
 
-class windowsPage extends StatefulWidget {
+class androidPage extends StatefulWidget {
   @override
-  _windowsPage createState() => _windowsPage();
+  _androidPage createState() => _androidPage();
 }
 
-class _windowsPage extends State<windowsPage> {
+class _androidPage extends State<androidPage> {
   late String accessToken;
-  late List<Map<String, dynamic>> windowsList = [];
+  late List<Map<String, dynamic>> androidList = [];
   Map<String, dynamic> userData = {};
 
   /**
@@ -31,7 +31,7 @@ class _windowsPage extends State<windowsPage> {
 
   Future<void> _initializePage() async {
     await _getAccessToken();
-    await _getWindows();
+    await _getAndroid();
     await _getLastUpdatedUser();
   }
 
@@ -44,12 +44,12 @@ class _windowsPage extends State<windowsPage> {
   }
 
   /**
-   * windows一覧取得
+   * Android一覧取得
    */
-  Future<String> _getWindows() async {
+  Future<String> _getAndroid() async {
     try {
       final response = await http.get(
-        Uri.parse('http://localhost:3001/windows'),
+        Uri.parse('http://localhost:3001/android'),
         headers: <String, String>{
           'Authorization': 'Bearer $accessToken',
         },
@@ -58,18 +58,18 @@ class _windowsPage extends State<windowsPage> {
         final String responseBody = utf8.decode(response.bodyBytes);
         final List<dynamic> data = json.decode(responseBody);
         setState(() {
-          windowsList = data
-              .map((windows) => {
-                    'id': windows['id'],
-                    'label_name': windows['label_name'] != null
-                        ? windows['label_name'] as String
+          androidList = data
+              .map((android) => {
+                    'id': android['id'],
+                    'label_name': android['label_name'] != null
+                        ? android['label_name'] as String
                         : '',
-                    'os': windows['os'] != null ? windows['os'] as String : '',
-                    'delete_flag': windows['delete_flag'] != null
-                        ? windows['delete_flag'] as bool
+                    'os': android['os'] != null ? android['os'] as String : '',
+                    'delete_flag': android['delete_flag'] != null
+                        ? android['delete_flag'] as bool
                         : false,
-                    'last_updated_flag': windows['last_updated_flag'] != null
-                        ? windows['last_updated_flag'] as bool
+                    'last_updated_flag': android['last_updated_flag'] != null
+                        ? android['last_updated_flag'] as bool
                         : false,
                   })
               .toList();
@@ -79,18 +79,18 @@ class _windowsPage extends State<windowsPage> {
       }
       return '';
     } catch (e) {
-      print('Error fetching Windows data: $e');
+      print('Error fetching Android data: $e');
       return '';
     }
   }
 
   /**
-   * windows最終更新者取得
+   * android最終更新者取得
    */
   Future<String> _getLastUpdatedUser() async {
     try {
       final response = await http.get(
-        Uri.parse('http://localhost:3001/windows_update_user'),
+        Uri.parse('http://localhost:3001/android_update_user'),
         headers: <String, String>{
           'Authorization': 'Bearer $accessToken',
         },
@@ -119,7 +119,7 @@ class _windowsPage extends State<windowsPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           LastUpdatedUser(userData: userData),
-          CardList(deviceList: windowsList, deviceId: DeviceId.windows),
+          CardList(deviceList: androidList, deviceId: DeviceId.android),
         ],
       ),
     );
