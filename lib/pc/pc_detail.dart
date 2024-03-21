@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../app_bar/app_bar.dart';
 import '../login/login.dart';
 import '../widgets/detail_item.dart';
+import '../constants.dart';
 
 class pcDetailPage extends StatefulWidget {
   final int pcId;
@@ -55,12 +56,12 @@ class _pcDetailPage extends State<pcDetailPage> {
           'Authorization': 'Bearer $accessToken',
         },
       );
-      if (response.statusCode == 200) {
+      if (response.statusCode == HttpStatusCode.ok) {
         final String responseBody = utf8.decode(response.bodyBytes);
         setState(() {
           pcData = json.decode(responseBody);
         });
-      } else if (response.statusCode == 401) {
+      } else if (response.statusCode == HttpStatusCode.unauthorized) {
         showDialog(
           context: context,
           barrierDismissible: false,

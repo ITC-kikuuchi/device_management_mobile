@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../app_bar/app_bar.dart';
 import '../widgets/detail_item.dart';
+import '../constants.dart';
 
 class windowsDetailPage extends StatefulWidget {
   final int windowsId;
@@ -54,7 +55,7 @@ class _windowsDetailPage extends State<windowsDetailPage> {
           'Authorization': 'Bearer $accessToken',
         },
       );
-      if (response.statusCode == 200) {
+      if (response.statusCode == HttpStatusCode.ok) {
         final String responseBody = utf8.decode(response.bodyBytes);
         setState(() {
           windowsData = json.decode(responseBody);

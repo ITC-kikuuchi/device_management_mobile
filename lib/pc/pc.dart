@@ -55,7 +55,7 @@ class _pcPage extends State<pcPage> {
           'Authorization': 'Bearer $accessToken',
         },
       );
-      if (response.statusCode == 200) {
+      if (response.statusCode == HttpStatusCode.ok) {
         final String responseBody = utf8.decode(response.bodyBytes);
         final List<dynamic> data = json.decode(responseBody);
         setState(() {
@@ -76,7 +76,7 @@ class _pcPage extends State<pcPage> {
                   })
               .toList();
         });
-      } else if (response.statusCode == 401) {
+      } else if (response.statusCode == HttpStatusCode.unauthorized) {
         showDialog(
           context: context,
           barrierDismissible: false,
@@ -156,7 +156,7 @@ class _pcPage extends State<pcPage> {
           'Authorization': 'Bearer $accessToken',
         },
       );
-      if (response.statusCode == 200) {
+      if (response.statusCode == HttpStatusCode.ok) {
         final String responseBody = utf8.decode(response.bodyBytes);
         setState(() {
           userData = json.decode(responseBody);

@@ -54,7 +54,7 @@ class _windowsPage extends State<windowsPage> {
           'Authorization': 'Bearer $accessToken',
         },
       );
-      if (response.statusCode == 200) {
+      if (response.statusCode == HttpStatusCode.ok) {
         final String responseBody = utf8.decode(response.bodyBytes);
         final List<dynamic> data = json.decode(responseBody);
         setState(() {
@@ -95,7 +95,7 @@ class _windowsPage extends State<windowsPage> {
           'Authorization': 'Bearer $accessToken',
         },
       );
-      if (response.statusCode == 200) {
+      if (response.statusCode == HttpStatusCode.ok) {
         final String responseBody = utf8.decode(response.bodyBytes);
         setState(() {
           userData = json.decode(responseBody);

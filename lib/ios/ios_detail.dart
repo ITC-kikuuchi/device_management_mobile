@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../app_bar/app_bar.dart';
 import '../widgets/detail_item.dart';
+import '../constants.dart';
 
 class iosDetailPage extends StatefulWidget {
   final int iosId;
@@ -54,7 +55,7 @@ class _iosDetailPage extends State<iosDetailPage> {
           'Authorization': 'Bearer $accessToken',
         },
       );
-      if (response.statusCode == 200) {
+      if (response.statusCode == HttpStatusCode.ok) {
         final String responseBody = utf8.decode(response.bodyBytes);
         setState(() {
           iosData = json.decode(responseBody);
