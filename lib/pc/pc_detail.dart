@@ -159,7 +159,10 @@ class _pcDetailPage extends State<pcDetailPage> {
               DetailItem(label: '型', value: pcData['type'] ?? '-'),
               DetailItem(label: 'サービスタグ', value: pcData['service_tag'] ?? '-'),
               DetailItem(label: 'OS', value: pcData['os'] ?? '-'),
-              DetailItem(label: 'bit数', value: pcData['bit'].toString() ?? '-'),
+              DetailItem(
+                label: 'bit数',
+                value: pcData['bit'] != null ? pcData['bit'].toString() : '-',
+              ),
               DetailItem(label: 'IE Ver', value: pcData['ie_version'] ?? '-'),
               DetailItem(label: 'IPアドレス', value: pcData['ip_address'] ?? '-'),
               DetailItem(label: 'GX/WWPライセンス', value: pcData['gx_wwp_license'] ?? '-'),
