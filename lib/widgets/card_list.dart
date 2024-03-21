@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../pc/pc_detail.dart';
-import '../ios/ios_detail.dart';
-import '../android/android_detail.dart';
-import '../windows/windows_detail.dart';
+import '../pages/pc/pc_detail.dart';
+import '../pages/ios/ios_detail.dart';
+import '../pages/android/android_detail.dart';
+import '../pages/windows/windows_detail.dart';
 import '../constants.dart';
 
 class CardList extends StatefulWidget {
