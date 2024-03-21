@@ -56,12 +56,12 @@ class _pcDetailPage extends State<pcDetailPage> {
           'Authorization': 'Bearer $accessToken',
         },
       );
-      if (response.statusCode == 200) {
+      if (response.statusCode == HttpStatusCode.ok) {
         final String responseBody = utf8.decode(response.bodyBytes);
         setState(() {
           pcData = json.decode(responseBody);
         });
-      } else if (response.statusCode == 401) {
+      } else if (response.statusCode == HttpStatusCode.unauthorized) {
         showDialog(
           context: context,
           barrierDismissible: false,

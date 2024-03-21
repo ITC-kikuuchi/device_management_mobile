@@ -55,7 +55,7 @@ class _LoginPage extends State<LoginPage> {
         },
       );
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == HttpStatusCode.ok) {
         // ログイン成功時の処理
 
         // レスポンスからアクセストークンを取得

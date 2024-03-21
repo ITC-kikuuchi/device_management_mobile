@@ -55,7 +55,7 @@ class _windowsDetailPage extends State<windowsDetailPage> {
           'Authorization': 'Bearer $accessToken',
         },
       );
-      if (response.statusCode == 200) {
+      if (response.statusCode == HttpStatusCode.ok) {
         final String responseBody = utf8.decode(response.bodyBytes);
         setState(() {
           windowsData = json.decode(responseBody);

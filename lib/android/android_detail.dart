@@ -55,7 +55,7 @@ class _androidDetailPage extends State<androidDetailPage> {
           'Authorization': 'Bearer $accessToken',
         },
       );
-      if (response.statusCode == 200) {
+      if (response.statusCode == HttpStatusCode.ok) {
         final String responseBody = utf8.decode(response.bodyBytes);
         setState(() {
           androidData = json.decode(responseBody);
