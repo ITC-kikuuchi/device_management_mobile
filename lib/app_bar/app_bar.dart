@@ -112,7 +112,12 @@ void _showDialog(BuildContext context) {
                           (route) => false,
                         );
                       },
-                      child: Text('はい'),
+                      child: Text(
+                        'はい',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                   ],
                 ),
