@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../app_bar/app_bar.dart';
+import '../login/login.dart';
 import '../widgets/detail_item.dart';
 
 class pcDetailPage extends StatefulWidget {
@@ -59,6 +60,65 @@ class _pcDetailPage extends State<pcDetailPage> {
         setState(() {
           pcData = json.decode(responseBody);
         });
+      } else if (response.statusCode == 401) {
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return GestureDetector(
+              onTap: () => Navigator.pop(context),
+              child: Dialog(
+                backgroundColor: Colors.white,
+                child: Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        'セッション切れのため\nログアウトします',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 40),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              shadowColor: Colors.grey,
+                              elevation: 5,
+                              backgroundColor: Colors.blueAccent,
+                              shape: const StadiumBorder(),
+                            ),
+                            onPressed: () async {
+                              final prefs =
+                                  await SharedPreferences.getInstance();
+                              await prefs.remove('access_token');
+                              Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LoginPage()),
+                                (route) => false,
+                              );
+                            },
+                            child: Text(
+                              'OK',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          },
+        );
       } else {
         throw Exception('Failed to load data');
       }
@@ -99,10 +159,14 @@ class _pcDetailPage extends State<pcDetailPage> {
               DetailItem(label: '型', value: pcData['type'] ?? '-'),
               DetailItem(label: 'サービスタグ', value: pcData['service_tag'] ?? '-'),
               DetailItem(label: 'OS', value: pcData['os'] ?? '-'),
-              DetailItem(label: 'bit数', value: pcData['bit'].toString() ?? '-'),
+              DetailItem(
+                label: 'bit数',
+                value: pcData['bit'] != null ? pcData['bit'].toString() : '-',
+              ),
               DetailItem(label: 'IE Ver', value: pcData['ie_version'] ?? '-'),
               DetailItem(label: 'IPアドレス', value: pcData['ip_address'] ?? '-'),
-              DetailItem(label: 'GX/WWPライセンス', value: pcData['gx_wwp_license'] ?? '-'),
+              DetailItem(
+                  label: 'GX/WWPライセンス', value: pcData['gx_wwp_license'] ?? '-'),
               DetailItem(label: '納品日', value: pcData['delivery_date'] ?? '-'),
               DetailItem(label: '廃棄日', value: pcData['disposal_date'] ?? '-'),
               DetailItem(label: '備考', value: pcData['remarks'] ?? '-'),
