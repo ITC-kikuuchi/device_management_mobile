@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../app_bar/app_bar.dart';
 import '../login/login.dart';
 import '../widgets/detail_item.dart';
+import '../constants.dart';
 
 class pcDetailPage extends StatefulWidget {
   final int pcId;
