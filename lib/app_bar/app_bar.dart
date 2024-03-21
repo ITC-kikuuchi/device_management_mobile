@@ -59,6 +59,7 @@ void _showDialog(BuildContext context) {
       return GestureDetector(
         onTap: () => Navigator.pop(context),
         child: Dialog(
+          backgroundColor: Colors.white,
           child: Container(
             width: double.infinity,
             padding: const EdgeInsets.all(20.0),
