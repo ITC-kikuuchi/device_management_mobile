@@ -78,6 +78,16 @@ void _showDialog(BuildContext context) {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        side: const BorderSide(
+                          width: 1.0,
+                          color: Colors.blueAccent,
+                        ),
+                        shadowColor: Colors.grey,
+                        elevation: 5,
+                        backgroundColor: Colors.white,
+                        shape: const StadiumBorder(),
+                      ),
                       onPressed: () => Navigator.pop(context),
                       child: Text('いいえ'),
                     ),
