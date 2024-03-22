@@ -48,6 +48,14 @@ class _CardList extends State<CardList> {
                   fontWeight: FontWeight.w500,
                   color: textColor), // テキストの色を設定
               ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8.0),
+                ),
+                side: BorderSide(
+                  color: borderColor,
+                  width: 1.0,
+                ),
               ),
               subtitle: widget.deviceId == 1
                   ? Text(
