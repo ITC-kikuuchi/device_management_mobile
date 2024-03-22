@@ -35,6 +35,8 @@ class _CardList extends State<CardList> {
               true; // last_updated_flagがtrueかどうかを判定
           final Color textColor =
               last_updated_flag ? Color.fromARGB(255, 255, 0, 0) : Colors.black;
+          final Color borderColor =
+              last_updated_flag ? Color.fromARGB(255, 255, 0, 0) : Colors.grey;
 
           return Card(
             color: cardColor,
