@@ -43,7 +43,11 @@ class _CardList extends State<CardList> {
             child: ListTile(
               title: Text(
                 widget.deviceList[index]['label_name'] ?? '',
-                style: TextStyle(color: textColor), // テキストの色を設定
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                  color: textColor), // テキストの色を設定
+              ),
               ),
               subtitle: widget.deviceId == 1
                   ? Text(
