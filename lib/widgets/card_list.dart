@@ -35,13 +35,27 @@ class _CardList extends State<CardList> {
               true; // last_updated_flagがtrueかどうかを判定
           final Color textColor =
               last_updated_flag ? Color.fromARGB(255, 255, 0, 0) : Colors.black;
+          final Color borderColor =
+              last_updated_flag ? Color.fromARGB(255, 255, 0, 0) : Colors.grey;
 
           return Card(
             color: cardColor,
             child: ListTile(
               title: Text(
                 widget.deviceList[index]['label_name'] ?? '',
-                style: TextStyle(color: textColor), // テキストの色を設定
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                  color: textColor), // テキストの色を設定
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8.0),
+                ),
+                side: BorderSide(
+                  color: borderColor,
+                  width: 1.0,
+                ),
               ),
               subtitle: widget.deviceId == 1
                   ? Text(
