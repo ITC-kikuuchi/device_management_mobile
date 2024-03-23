@@ -11,6 +11,10 @@ class EnforcementLogoutDialog extends StatelessWidget {
       onTap: () => Navigator.pop(context),
       child: Dialog(
         backgroundColor: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+          side: BorderSide(color: const Color.fromARGB(255, 106, 106, 106), width: 3.0),
+        ),
         child: Container(
           width: double.infinity,
           padding: const EdgeInsets.all(20.0),
