@@ -61,9 +61,8 @@ void _showDialog(BuildContext context) {
         child: Dialog(
           backgroundColor: Colors.white,
           shape: RoundedRectangleBorder(
-            // 枠線を追加する
-            borderRadius: BorderRadius.circular(10.0), // 枠線の角丸を設定
-            side: BorderSide(color: const Color.fromARGB(255, 106, 106, 106), width: 3.0), // 枠線の色と幅を設定
+            borderRadius: BorderRadius.circular(10.0),
+            side: BorderSide(color: const Color.fromARGB(255, 106, 106, 106), width: 3.0),
           ),
           child: Container(
             width: double.infinity,
