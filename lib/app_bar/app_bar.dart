@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/logout_dialog.dart';
+
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
