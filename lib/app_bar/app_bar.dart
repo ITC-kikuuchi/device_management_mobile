@@ -18,7 +18,13 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           onPressed: () async {
             // SharedPreferencesの値を初期化
-            _showDialog(context);
+            showDialog(
+              context: context,
+              barrierDismissible: false,
+              builder: (BuildContext context) {
+                return LogoutDialog();
+              },
+            );
           },
         ),
       ],
