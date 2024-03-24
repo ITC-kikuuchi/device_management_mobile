@@ -17,7 +17,6 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
             color: Colors.white,
           ),
           onPressed: () async {
-            // SharedPreferencesの値を初期化
             showDialog(
               context: context,
               barrierDismissible: false,
