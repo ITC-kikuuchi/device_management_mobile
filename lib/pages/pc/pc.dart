@@ -11,12 +11,12 @@ import '../../widgets/enforcement_logout_dialog.dart';
 import '../../widgets/card_list.dart';
 import '../../constants.dart';
 
-class pcPage extends StatefulWidget {
+class PcPage extends StatefulWidget {
   @override
-  _pcPage createState() => _pcPage();
+  _PcPage createState() => _PcPage();
 }
 
-class _pcPage extends State<pcPage> {
+class _PcPage extends State<PcPage> {
   late String accessToken;
   late List<Map<String, dynamic>> pcList = [];
   Map<String, dynamic> userData = {};
@@ -27,19 +27,19 @@ class _pcPage extends State<pcPage> {
   @override
   void initState() {
     super.initState();
-    _initializePage();
+    _InitializePage();
   }
 
-  Future<void> _initializePage() async {
-    await _getAccessToken();
-    await _getPc();
-    await _getLastUpdatedUser();
+  Future<void> _InitializePage() async {
+    await _GetAccessToken();
+    await _GetPc();
+    await _GetLastUpdatedUser();
   }
 
   /**
    * ログインユーザのトークン取得
    */
-  Future<void> _getAccessToken() async {
+  Future<void> _GetAccessToken() async {
     final prefs = await SharedPreferences.getInstance();
     accessToken = prefs.getString('access_token') ?? "";
   }
@@ -47,7 +47,7 @@ class _pcPage extends State<pcPage> {
   /**
    * pc一覧取得
    */
-  Future<String> _getPc() async {
+  Future<String> _GetPc() async {
     try {
       final response = await http.get(
         Uri.parse('http://localhost:3001/pc'),
@@ -98,7 +98,7 @@ class _pcPage extends State<pcPage> {
   /**
    * pc最終更新者取得
    */
-  Future<String> _getLastUpdatedUser() async {
+  Future<String> _GetLastUpdatedUser() async {
     try {
       final response = await http.get(
         Uri.parse('http://localhost:3001/pc_update_user'),

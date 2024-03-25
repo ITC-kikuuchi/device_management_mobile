@@ -9,14 +9,14 @@ import '../../widgets/detail_item.dart';
 import '../../widgets/enforcement_logout_dialog.dart';
 import '../../constants.dart';
 
-class pcDetailPage extends StatefulWidget {
+class PcDetailPage extends StatefulWidget {
   final int pcId;
-  pcDetailPage({required this.pcId});
+  PcDetailPage({required this.pcId});
   @override
-  _pcDetailPage createState() => _pcDetailPage();
+  _PcDetailPage createState() => _PcDetailPage();
 }
 
-class _pcDetailPage extends State<pcDetailPage> {
+class _PcDetailPage extends State<PcDetailPage> {
   late String accessToken;
   Map<String, dynamic> pcData = {};
 
@@ -26,21 +26,21 @@ class _pcDetailPage extends State<pcDetailPage> {
   @override
   void initState() {
     super.initState();
-    _initializePage();
+    _InitializePage();
   }
 
   /**
    * 初期化される際に実行する関数の呼び出し
    */
-  Future<void> _initializePage() async {
-    await _getAccessToken();
-    await _getPcDetail();
+  Future<void> _InitializePage() async {
+    await _GetAccessToken();
+    await _GetPcDetail();
   }
 
   /**
    * ログインユーザのトークン取得
    */
-  Future<void> _getAccessToken() async {
+  Future<void> _GetAccessToken() async {
     final prefs = await SharedPreferences.getInstance();
     accessToken = prefs.getString('access_token') ?? "";
   }
@@ -48,7 +48,7 @@ class _pcDetailPage extends State<pcDetailPage> {
   /**
    * pc詳細取得
    */
-  Future<String> _getPcDetail() async {
+  Future<String> _GetPcDetail() async {
     try {
       final response = await http.get(
         Uri.parse('http://localhost:3001/pc/${widget.pcId}'),
