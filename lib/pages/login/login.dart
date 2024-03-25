@@ -67,7 +67,7 @@ class _LoginPage extends State<LoginPage> {
 
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => pcPage()),
+          MaterialPageRoute(builder: (context) => PcPage()),
         );
       } else {
         // ログイン失敗時の処理
