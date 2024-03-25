@@ -11,12 +11,12 @@ import '../../widgets/enforcement_logout_dialog.dart';
 import '../../widgets/card_list.dart';
 import '../../constants.dart';
 
-class pcPage extends StatefulWidget {
+class PcPage extends StatefulWidget {
   @override
-  _pcPage createState() => _pcPage();
+  _PcPage createState() => _PcPage();
 }
 
-class _pcPage extends State<pcPage> {
+class _PcPage extends State<PcPage> {
   late String accessToken;
   late List<Map<String, dynamic>> pcList = [];
   Map<String, dynamic> userData = {};
