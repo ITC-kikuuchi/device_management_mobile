@@ -9,14 +9,14 @@ import '../../widgets/detail_item.dart';
 import '../../widgets/enforcement_logout_dialog.dart';
 import '../../constants.dart';
 
-class pcDetailPage extends StatefulWidget {
+class PcDetailPage extends StatefulWidget {
   final int pcId;
-  pcDetailPage({required this.pcId});
+  PcDetailPage({required this.pcId});
   @override
-  _pcDetailPage createState() => _pcDetailPage();
+  _PcDetailPage createState() => _PcDetailPage();
 }
 
-class _pcDetailPage extends State<pcDetailPage> {
+class _PcDetailPage extends State<PcDetailPage> {
   late String accessToken;
   Map<String, dynamic> pcData = {};
 
