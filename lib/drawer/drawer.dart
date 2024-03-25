@@ -27,7 +27,7 @@ class MyDrawer extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => pcPage()), // 遷移先の画面を指定
+                MaterialPageRoute(builder: (context) => PcPage()), // 遷移先の画面を指定
               );
             },
           ),
