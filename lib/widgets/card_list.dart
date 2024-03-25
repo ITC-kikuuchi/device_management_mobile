@@ -75,7 +75,7 @@ class _CardList extends State<CardList> {
                     builder: (context) {
                       switch (widget.deviceId) {
                         case DeviceId.pc:
-                          return pcDetailPage(pcId: id);
+                          return PcDetailPage(pcId: id);
                         case DeviceId.ios:
                           return iosDetailPage(iosId: id);
                         case DeviceId.android:
