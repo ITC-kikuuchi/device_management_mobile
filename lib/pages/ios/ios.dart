@@ -11,12 +11,12 @@ import '../../widgets/card_list.dart';
 import '../../widgets/enforcement_logout_dialog.dart';
 import '../../constants.dart';
 
-class iosPage extends StatefulWidget {
+class  IosPage extends StatefulWidget {
   @override
-  _iosPage createState() => _iosPage();
+  _IosPage createState() => _IosPage();
 }
 
-class _iosPage extends State<iosPage> {
+class _IosPage extends State<IosPage> {
   late String accessToken;
   late List<Map<String, dynamic>> iosList = [];
   Map<String, dynamic> userData = {};
