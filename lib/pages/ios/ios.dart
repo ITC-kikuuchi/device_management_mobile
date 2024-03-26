@@ -11,12 +11,12 @@ import '../../widgets/card_list.dart';
 import '../../widgets/enforcement_logout_dialog.dart';
 import '../../constants.dart';
 
-class iosPage extends StatefulWidget {
+class IosPage extends StatefulWidget {
   @override
-  _iosPage createState() => _iosPage();
+  _IosPage createState() => _IosPage();
 }
 
-class _iosPage extends State<iosPage> {
+class _IosPage extends State<IosPage> {
   late String accessToken;
   late List<Map<String, dynamic>> iosList = [];
   Map<String, dynamic> userData = {};
@@ -27,19 +27,19 @@ class _iosPage extends State<iosPage> {
   @override
   void initState() {
     super.initState();
-    _initializePage();
+    _InitializePage();
   }
 
-  Future<void> _initializePage() async {
-    await _getAccessToken();
-    await _getIos();
-    await _getLastUpdatedUser();
+  Future<void> _InitializePage() async {
+    await _GetAccessToken();
+    await _GetIos();
+    await _GetLastUpdatedUser();
   }
 
   /**
    * ログインユーザのトークン取得
    */
-  Future<void> _getAccessToken() async {
+  Future<void> _GetAccessToken() async {
     final prefs = await SharedPreferences.getInstance();
     accessToken = prefs.getString('access_token') ?? "";
   }
@@ -47,7 +47,7 @@ class _iosPage extends State<iosPage> {
   /**
    * ios一覧取得
    */
-  Future<String> _getIos() async {
+  Future<String> _GetIos() async {
     try {
       final response = await http.get(
         Uri.parse('http://localhost:3001/ios'),
@@ -97,7 +97,7 @@ class _iosPage extends State<iosPage> {
   /**
    * ios最終更新者取得
    */
-  Future<String> _getLastUpdatedUser() async {
+  Future<String> _GetLastUpdatedUser() async {
     try {
       final response = await http.get(
         Uri.parse('http://localhost:3001/ios_update_user'),

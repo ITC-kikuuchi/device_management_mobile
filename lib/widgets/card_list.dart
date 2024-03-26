@@ -77,7 +77,7 @@ class _CardList extends State<CardList> {
                         case DeviceId.pc:
                           return PcDetailPage(pcId: id);
                         case DeviceId.ios:
-                          return iosDetailPage(iosId: id);
+                          return IosDetailPage(iosId: id);
                         case DeviceId.android:
                           return androidDetailPage(androidId: id);
                         case DeviceId.windows:
