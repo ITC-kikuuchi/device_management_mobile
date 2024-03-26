@@ -26,21 +26,21 @@ class _IosDetailPage extends State<IosDetailPage> {
   @override
   void initState() {
     super.initState();
-    _initializePage();
+    _InitializePage();
   }
 
   /**
    * 初期化される際に実行する関数の呼び出し
    */
-  Future<void> _initializePage() async {
-    await _getAccessToken();
-    await _getIosDetail();
+  Future<void> _InitializePage() async {
+    await _GetAccessToken();
+    await _GetIosDetail();
   }
 
   /**
    * ログインユーザのトークン取得
    */
-  Future<void> _getAccessToken() async {
+  Future<void> _GetAccessToken() async {
     final prefs = await SharedPreferences.getInstance();
     accessToken = prefs.getString('access_token') ?? "";
   }
@@ -48,7 +48,7 @@ class _IosDetailPage extends State<IosDetailPage> {
   /**
    * iOS詳細取得
    */
-  Future<String> _getIosDetail() async {
+  Future<String> _GetIosDetail() async {
     try {
       final response = await http.get(
         Uri.parse('http://localhost:3001/ios/${widget.iosId}'),
