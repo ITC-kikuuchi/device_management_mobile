@@ -11,7 +11,7 @@ import '../../widgets/card_list.dart';
 import '../../widgets/enforcement_logout_dialog.dart';
 import '../../constants.dart';
 
-class  IosPage extends StatefulWidget {
+class IosPage extends StatefulWidget {
   @override
   _IosPage createState() => _IosPage();
 }
