@@ -9,14 +9,14 @@ import '../../widgets/detail_item.dart';
 import '../../widgets/enforcement_logout_dialog.dart';
 import '../../constants.dart';
 
-class iosDetailPage extends StatefulWidget {
+class IosDetailPage extends StatefulWidget {
   final int iosId;
-  iosDetailPage({required this.iosId});
+  IosDetailPage({required this.iosId});
   @override
-  _iosDetailPage createState() => _iosDetailPage();
+  _IosDetailPage createState() => _IosDetailPage();
 }
 
-class _iosDetailPage extends State<iosDetailPage> {
+class _IosDetailPage extends State<IosDetailPage> {
   late String accessToken;
   Map<String, dynamic> iosData = {};
 
