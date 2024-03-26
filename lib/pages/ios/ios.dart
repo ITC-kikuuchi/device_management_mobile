@@ -27,19 +27,19 @@ class _IosPage extends State<IosPage> {
   @override
   void initState() {
     super.initState();
-    _initializePage();
+    _InitializePage();
   }
 
-  Future<void> _initializePage() async {
-    await _getAccessToken();
-    await _getIos();
-    await _getLastUpdatedUser();
+  Future<void> _InitializePage() async {
+    await _GetAccessToken();
+    await _GetIos();
+    await _GetLastUpdatedUser();
   }
 
   /**
    * ログインユーザのトークン取得
    */
-  Future<void> _getAccessToken() async {
+  Future<void> _GetAccessToken() async {
     final prefs = await SharedPreferences.getInstance();
     accessToken = prefs.getString('access_token') ?? "";
   }
@@ -47,7 +47,7 @@ class _IosPage extends State<IosPage> {
   /**
    * ios一覧取得
    */
-  Future<String> _getIos() async {
+  Future<String> _GetIos() async {
     try {
       final response = await http.get(
         Uri.parse('http://localhost:3001/ios'),
@@ -97,7 +97,7 @@ class _IosPage extends State<IosPage> {
   /**
    * ios最終更新者取得
    */
-  Future<String> _getLastUpdatedUser() async {
+  Future<String> _GetLastUpdatedUser() async {
     try {
       final response = await http.get(
         Uri.parse('http://localhost:3001/ios_update_user'),
